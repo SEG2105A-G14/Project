@@ -71,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
                                             myRef[0].addValueEventListener(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    User user =  snapshot.getValue(GymMember.class);
-                                                    Log.d(TAG, snapshot.toString());
+                                                    User user =  snapshot.getValue(User.class);
                                                     assert user != null;
 
                                                     role[0] = user.getRole();
@@ -81,14 +80,21 @@ public class MainActivity extends AppCompatActivity {
                                                     if (role[0].equals("Member")){
                                                         Intent welcomeIntent = new Intent(MainActivity.this, GymMemberPage.class);
                                                         welcomeIntent.putExtra("name", tempName[0]);
+                                                        welcomeIntent.putExtra("role", role[0]);
+                                                        startActivity(welcomeIntent);
+                                                    }
+                                                    else if (role[0].equals("Instructor")){
+                                                        Intent welcomeIntent = new Intent(MainActivity.this, InstructorPage.class);
+                                                        welcomeIntent.putExtra("name", tempName[0]);
+                                                        welcomeIntent.putExtra("role", role[0]);
                                                         startActivity(welcomeIntent);
                                                     }
                                                     else {
-                                                        Intent welcomeIntent = new Intent(MainActivity.this, Instructor.class);
+                                                        Intent welcomeIntent = new Intent(MainActivity.this, AdminPage.class);
                                                         welcomeIntent.putExtra("name", tempName[0]);
+                                                        welcomeIntent.putExtra("role", role[0]);
                                                         startActivity(welcomeIntent);
                                                     }
-
                                                 }
 
                                                 @Override

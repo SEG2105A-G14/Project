@@ -3,6 +3,7 @@ package com.example.testgymapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,7 +17,8 @@ public class GymMemberPage extends AppCompatActivity {
         TextView welcomeText = findViewById(R.id.welcomeMessage);
 
         String userName = getIntent().getStringExtra("name");
-        String message = "Welcome "+userName;
+        String role = getIntent().getStringExtra("role");
+        String message = "Welcome "+userName+" ! You are logged in as "+role;
 
         welcomeText.setText(message);
 

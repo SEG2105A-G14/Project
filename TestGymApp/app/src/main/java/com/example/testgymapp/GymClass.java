@@ -14,6 +14,10 @@ public class GymClass {
     private int numberOfUsers;
 
     public GymClass(){}
+    public GymClass(String className, String description){
+        this.className = className;
+        this.description = description;
+    }
     public GymClass(String className, String description, String classTime, int maximumCapacity, String day, String difficulty, User instructor){
             this.className = className;
             this.description = description;

@@ -12,12 +12,16 @@
         <entry key="..\:/Users/ralph/Desktop/TestGymApp/app/src/main/res/layout/activity_instructor_page.xml" value="0.176" />
         <entry key="..\:/Users/ralph/Desktop/TestGymApp/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/ralph/Desktop/TestGymApp/app/src/main/res/layout/activity_select_account_type.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_admin_page.xml" value="0.20742753623188406" />
+        <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_admin_page.xml" value="0.4" />
         <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_create_account.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_create_gym_class.xml" value="0.2" />
+        <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_gym_classes.xml" value="0.2" />
         <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_gym_member_page.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_instructor_page.xml" value="0.2" />
         <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_user_account_page.xml" value="0.19114583333333332" />
+        <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/activity_user_accounts.xml" value="0.2" />
+        <entry key="..\:/Users/ralph/Desktop/UOTTAWA/2nd Year/FALL 2021/SEG 2105/Project/Project/TestGymApp/app/src/main/res/layout/gym_classs_item.xml" value="0.17831813576494426" />
       </map>
     </option>
   </component>

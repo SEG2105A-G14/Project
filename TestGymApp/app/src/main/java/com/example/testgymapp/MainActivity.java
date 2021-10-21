@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
@@ -29,6 +30,7 @@ import com.google.firebase.database.*;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private static int SPLASH_TIME_OUT = 2000;
     private static final String TAG = "MyActivity";
     EditText email;
     EditText password;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase mdb = FirebaseDatabase.getInstance();
 
@@ -47,8 +50,19 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.loginPassword);
         loginButton = (Button) findViewById(R.id.loginButton);
 
+        TextView welcomeMessage =(TextView) findViewById(R.id.textView4);
         TextView createAccountlabel = (TextView) findViewById(R.id.createAccountText);
         createAccountlabel.setTextColor(Color.parseColor("#0000FF"));
+
+        email.setTextColor(Color.parseColor("#FFFFFF"));
+        password.setTextColor(Color.parseColor("#FFFFFF"));
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                welcomeMessage.setVisibility(View.INVISIBLE);
+            }
+        }, SPLASH_TIME_OUT);
 
         SpannableString content = new SpannableString("Sign up");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);

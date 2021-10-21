@@ -16,12 +16,12 @@
         "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_user_account_page.xml.flat",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_user_account_page.xml"
-    },
-    {
         "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\merged_res\\debug\\drawable_useraccount2.jpg.flat",
         "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\drawable\\useraccount2.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_user_account_page.xml.flat",
+        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_user_account_page.xml"
     },
     {
         "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_admin_page.xml.flat",

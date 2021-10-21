@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,8 @@ public class AdminPage extends AppCompatActivity {
     DatabaseReference myRef;
     TextView showUsers;
 
+    private static int SPLASH_TIME_OUT = 2000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,13 @@ public class AdminPage extends AppCompatActivity {
         String message = "Welcome "+userName+"! You are logged in as an "+role;
 
         welcomeText.setText(message);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                welcomeText.setVisibility(View.INVISIBLE);
+            }
+        }, SPLASH_TIME_OUT);
 
         topLeft.setOnClickListener(new View.OnClickListener() {
             @Override

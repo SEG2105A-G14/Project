@@ -88,6 +88,7 @@ public class CreateAccount extends AppCompatActivity {
                                           Intent welcomePageIntent = new Intent(CreateAccount.this, GymMemberPage.class);
                                           welcomePageIntent.putExtra("name", gymMember.getName());
                                           welcomePageIntent.putExtra("role", gymMember.getRole());
+
                                           startActivity(welcomePageIntent);
 
                                       }
@@ -132,6 +133,7 @@ public class CreateAccount extends AppCompatActivity {
         String t2 = email2.getText().toString().trim().toLowerCase();
         if(!t2.equals(t1)){
             email2.setError("Email entries do not match");
+
             return false;
         }  return true;
     }
@@ -220,5 +222,5 @@ public class CreateAccount extends AppCompatActivity {
         }
         return t1.equals(t2);
     }
-
+ 
 }

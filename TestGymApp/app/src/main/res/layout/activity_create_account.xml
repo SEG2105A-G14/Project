@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateAccount">
+    tools:context=".CreateAccount"
+    android:background="@drawable/useraccount2">
 
     <EditText
         android:id="@+id/usernameField"
-        android:layout_width="314dp"
-        android:layout_height="41dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Username"
+        android:backgroundTint="@color/black"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/gymRoles"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,9 +27,10 @@
 
     <TextView
         android:id="@+id/pageTitle"
-        android:layout_width="252dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
         android:text="Create an account"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -37,11 +42,14 @@
 
     <EditText
         android:id="@+id/userEmail"
-        android:layout_width="314dp"
-        android:layout_height="41dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:ems="10"
         android:hint="Email"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/black"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/emailSecondEntry"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,10 +58,13 @@
 
     <EditText
         android:id="@+id/passwordFirstEntry"
-        android:layout_width="314dp"
-        android:layout_height="41dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:ems="10"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/black"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/passwordSecondEntry"
@@ -63,10 +74,13 @@
 
     <EditText
         android:id="@+id/passwordSecondEntry"
-        android:layout_width="314dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:ems="10"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:backgroundTint="@color/black"
         android:hint="Confirm Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/signUpButton"
@@ -76,9 +90,12 @@
 
     <Button
         android:id="@+id/signUpButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
+        android:textSize="16sp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,8 +104,10 @@
 
     <Spinner
         android:id="@+id/gymRoles"
-        android:layout_width="312dp"
+        android:layout_width="match_parent"
         android:layout_height="35dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toTopOf="@+id/userEmail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,10 +116,13 @@
 
     <EditText
         android:id="@+id/emailSecondEntry"
-        android:layout_width="302dp"
-        android:layout_height="44dp"
-        android:layout_marginBottom="52dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:ems="10"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:backgroundTint="@color/black"
         android:hint="Confirm Email"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/passwordFirstEntry"

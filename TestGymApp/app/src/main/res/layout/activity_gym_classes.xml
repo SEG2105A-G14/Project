@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GymClasses">
+    tools:context=".GymClasses"
+    android:background="@drawable/list">
 
     <RelativeLayout
         android:layout_width="406dp"
@@ -23,13 +24,13 @@
                 android:id="@+id/classList"
                 android:layout_width="match_parent"
                 android:layout_height="603dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.492">
-            </ListView>
+                app:layout_constraintVertical_bias="0.492"></ListView>
         </LinearLayout>
 
         <LinearLayout

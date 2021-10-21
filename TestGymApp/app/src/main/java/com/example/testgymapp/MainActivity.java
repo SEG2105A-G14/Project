@@ -91,29 +91,34 @@ public class MainActivity extends AppCompatActivity {
                                             myRef[0].addValueEventListener(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    User user =  snapshot.getValue(User.class);
-                                                    assert user != null;
+                                                    if (snapshot.exists()){
+                                                        User user =  snapshot.getValue(User.class);
+                                                        assert user != null;
 
-                                                    role[0] = user.getRole();
-                                                    tempName[0] = user.getName();
+                                                        role[0] = user.getRole();
+                                                        tempName[0] = user.getName();
 
-                                                    if (role[0].equals("Member")){
-                                                        Intent welcomeIntent = new Intent(MainActivity.this, GymMemberPage.class);
-                                                        welcomeIntent.putExtra("name", tempName[0]);
-                                                        welcomeIntent.putExtra("role", role[0]);
-                                                        startActivity(welcomeIntent);
-                                                    }
-                                                    else if (role[0].equals("Instructor")){
-                                                        Intent welcomeIntent = new Intent(MainActivity.this, InstructorPage.class);
-                                                        welcomeIntent.putExtra("name", tempName[0]);
-                                                        welcomeIntent.putExtra("role", role[0]);
-                                                        startActivity(welcomeIntent);
-                                                    }
-                                                    else {
-                                                        Intent welcomeIntent = new Intent(MainActivity.this, AdminPage.class);
-                                                        welcomeIntent.putExtra("name", tempName[0]);
-                                                        welcomeIntent.putExtra("role", role[0]);
-                                                        startActivity(welcomeIntent);
+                                                        if (role[0].equals("Member")){
+                                                            Intent welcomeIntent = new Intent(MainActivity.this, GymMemberPage.class);
+                                                            welcomeIntent.putExtra("name", tempName[0]);
+                                                            welcomeIntent.putExtra("role", role[0]);
+                                                            startActivity(welcomeIntent);
+                                                        }
+                                                        else if (role[0].equals("Instructor")){
+                                                            Intent welcomeIntent = new Intent(MainActivity.this, InstructorPage.class);
+                                                            welcomeIntent.putExtra("name", tempName[0]);
+                                                            welcomeIntent.putExtra("role", role[0]);
+                                                            startActivity(welcomeIntent);
+                                                        }
+                                                        else {
+                                                            Intent welcomeIntent = new Intent(MainActivity.this, AdminPage.class);
+                                                            welcomeIntent.putExtra("name", tempName[0]);
+                                                            welcomeIntent.putExtra("role", role[0]);
+                                                            startActivity(welcomeIntent);
+                                                        }
+                                                    }else {
+                                                        mAuth.signOut();
+                                                        Toast.makeText(MainActivity.this, "This account does not exit", Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
 

@@ -87,6 +87,8 @@ public class CreateAccount extends AppCompatActivity {
 
                                           Intent welcomePageIntent = new Intent(CreateAccount.this, GymMemberPage.class);
                                           welcomePageIntent.putExtra("name", gymMember.getName());
+                                          welcomePageIntent.putExtra("role", gymMember.getRole());
+
                                           startActivity(welcomePageIntent);
 
                                       }
@@ -99,9 +101,13 @@ public class CreateAccount extends AppCompatActivity {
 
                                           Intent welcomePageIntent = new Intent(CreateAccount.this, InstructorPage.class);
                                           welcomePageIntent.putExtra("name", gymInstructor.getName());
+                                          welcomePageIntent.putExtra("role", gymInstructor.getRole());
                                           startActivity(welcomePageIntent);
                                       }
 
+                                    }
+                                    else {
+                                        Toast.makeText(CreateAccount.this, "Email already existing ! Try a different one", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -113,9 +119,12 @@ public class CreateAccount extends AppCompatActivity {
 
     public boolean verifyEmail(){
         email1 = (EditText) findViewById(R.id.userEmail);
-        //String text = email1.getText().toString().trim();
-        //Pattern pattern = Pattern.compile("[a-zA-Z0-9]+\\\\.?[a-zA-Z0-9]+@[a-zA-Z]+\\\\.[a-zA-Z]+", Pattern.CASE_INSENSITIVE);
-        return Patterns.EMAIL_ADDRESS.matcher(email1.getText()).matches();
+        String t1 = email1.getText().toString().trim().toLowerCase();
+        boolean valid = Patterns.EMAIL_ADDRESS.matcher(email1.getText()).matches();
+        if (!valid){
+            email1.setError("Invalid email");
+        }
+        return valid;
     }
 
     public boolean confirmEmail(){
@@ -123,7 +132,8 @@ public class CreateAccount extends AppCompatActivity {
         String t1 = email1.getText().toString().trim().toLowerCase();
         String t2 = email2.getText().toString().trim().toLowerCase();
         if(!t2.equals(t1)){
-            email2.setError("Email entered does not match the previous entered email");
+            email2.setError("Email entries do not match");
+
             return false;
         }  return true;
     }
@@ -206,11 +216,11 @@ public class CreateAccount extends AppCompatActivity {
         EditText password2 = findViewById(R.id.passwordSecondEntry);
         String t1 = password1.getText().toString();
         String t2 = password2.getText().toString();
+
+        if (!t1.equals(t2)){
+            password2.setError("Password entries do not match");
+        }
         return t1.equals(t2);
     }
-
-    public void uodateUI(){
-
-
-    }
+ 
 }

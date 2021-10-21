@@ -53,7 +53,6 @@ public class GymClasses extends AppCompatActivity {
         completeEdit = findViewById(R.id.completeClassEdit);
         deleteButton = findViewById(R.id.deleteClassButton);
 
-
         myRef = FirebaseDatabase.getInstance().getReference().child("gymClasses");
         final String[] actualName = new String[1];
 

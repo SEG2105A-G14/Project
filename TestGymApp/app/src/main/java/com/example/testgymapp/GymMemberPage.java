@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class GymMemberPage extends AppCompatActivity {
+
     private static int SPLASH_TIME_OUT = 2000;
 
     @Override
@@ -21,6 +22,7 @@ public class GymMemberPage extends AppCompatActivity {
 
         String userName = getIntent().getStringExtra("name");
         String role = getIntent().getStringExtra("role");
+
         String message = "Welcome "+userName+"! You are logged in as an "+role;
 
         welcomeText.setText(message);
@@ -31,7 +33,6 @@ public class GymMemberPage extends AppCompatActivity {
                 welcomeText.setVisibility(View.INVISIBLE);
             }
         }, SPLASH_TIME_OUT);
-
     }
 
     public void searchforClass(){

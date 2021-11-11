@@ -1,13 +1,11 @@
 package com.example.testgymapp;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class GymClass {
-
-    private GymClassType gymClassType;
-    private String startTime;
-    private int duration;
+    private String className;
+    private String description;
+    private String classTime;
     private int maximumCapacity;
     private String day;
     private String difficulty;
@@ -16,15 +14,14 @@ public class GymClass {
     private int numberOfUsers;
 
     public GymClass(){}
-    public GymClass(String startTime, int maximumCapacity, String day, String difficulty){
-        this.startTime = startTime;
-        this.maximumCapacity = maximumCapacity;
-        this.day = day;
-        this.difficulty = difficulty;
-        members = new ArrayList<User>();
+    public GymClass(String className, String description){
+        this.className = className;
+        this.description = description;
     }
-    public GymClass(String startTime, int maximumCapacity, String day, String difficulty, User instructor){
-            this.startTime = startTime;
+    public GymClass(String className, String description, String classTime, int maximumCapacity, String day, String difficulty, User instructor){
+            this.className = className;
+            this.description = description;
+            this.classTime = classTime;
             this.maximumCapacity = maximumCapacity;
             this.day = day;
             this.difficulty = difficulty;
@@ -32,12 +29,28 @@ public class GymClass {
             members = new ArrayList<User>();
     }
 
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getClassTime() {
-        return startTime;
+        return classTime;
     }
 
     public void setClassTime(String classTime) {
-        this.startTime = classTime;
+        this.classTime = classTime;
     }
 
     public int getMaximumCapacity() {
@@ -68,31 +81,7 @@ public class GymClass {
         return members;
     }
 
-    public GymClassType getGymClassType() {
-        return gymClassType;
-    }
-
-    public void setGymClassType(GymClassType gymClassType) {
-        this.gymClassType = gymClassType;
-    }
-
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public int getNumberOfUsers() {
-        return numberOfUsers;
-    }
-
-    public void setNumberOfUsers(int numberOfUsers) {
-        this.numberOfUsers = numberOfUsers;
-    }
-
-    public boolean addMember(GymMember user) {
+    public boolean addMember(User user) {
         if (numberOfUsers<=maximumCapacity){
             members.add(user);
             numberOfUsers+=1;
@@ -108,21 +97,5 @@ public class GymClass {
             return true;
         }
         return false;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 }

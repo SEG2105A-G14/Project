@@ -11,6 +11,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import com.google.firebase.database.DataSnapshot;
@@ -43,8 +47,8 @@ public class UserAccountPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 final ArrayList<String> members = new ArrayList<>();
                 final ArrayList<String> instructors = new ArrayList<>();
-                final ArrayAdapter membersAdapter = new ArrayAdapter<String>(UserAccountPage.this, R.layout.gym_class_item, members);
-                final ArrayAdapter instructorAdapter = new ArrayAdapter<String>(UserAccountPage.this, R.layout.gym_class_item, instructors);
+                final ArrayAdapter membersAdapter = new ArrayAdapter<String>(UserAccountPage.this, R.layout.gym_classs_item, members);
+                final ArrayAdapter instructorAdapter = new ArrayAdapter<String>(UserAccountPage.this, R.layout.gym_classs_item, instructors);
                 membersList.setAdapter(membersAdapter);
                 instructorsList.setAdapter(instructorAdapter);
 

@@ -101,7 +101,7 @@ public class AdminPage extends AppCompatActivity {
                 if (mUser!=null){
                     String name = className.getText().toString().trim().toLowerCase();
                     String description = classDescription.getText().toString().trim();
-                    GymClassType aGymClass= new GymClassType(name, description);
+                    GymClass aGymClass= new GymClass(name, description);
                     if (name.length()!=0 && description.length()!=0) {
                         addGymClass(aGymClass);
                         myRef.child("gymClasses").child(name).getRef().setValue(aGymClass);
@@ -138,7 +138,7 @@ public class AdminPage extends AppCompatActivity {
         });
     }
 
-    public void addGymClass(GymClassType gymClass){
+    public void addGymClass(GymClass gymClass){
         final String[] name = {gymClass.getClassName()};
         final boolean[] success = {false};
 

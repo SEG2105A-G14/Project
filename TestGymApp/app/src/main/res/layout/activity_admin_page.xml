@@ -101,7 +101,7 @@
                         android:id="@+id/showGymClasses"
                         android:layout_width="126dp"
                         android:layout_height="26dp"
-                        android:text="Available Fitness Classes"
+                        android:text="Gym Classes"
                         app:layout_constraintBottom_toTopOf="@+id/showUsers"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.492"

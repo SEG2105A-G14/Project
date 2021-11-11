@@ -7,205 +7,98 @@
     tools:context=".GymClasses"
     android:background="@drawable/list">
 
-
-    <!--<SearchView
-        android:id="@+id/classSearch"
-        android:layout_width="269dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="84dp"
-        android:queryHint="Search for a class name or instructor"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ScrollView
-        android:id="@+id/searchScrollView"
-        android:visibility="gone"
-        android:layout_width="339dp"
-        android:layout_height="507dp"
-        android:layout_marginTop="24dp"
+    <RelativeLayout
+        android:layout_width="406dp"
+        android:layout_height="626dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/classSearch">
-
-        <LinearLayout
-            android:id="@+id/searchLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-            <ListView
-                android:id="@+id/searchList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </ListView>
-        </LinearLayout>
-    </ScrollView>-->
-
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="413dp"
-        android:layout_height="490dp"
-        android:layout_marginTop="156dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="597dp"
+            >
 
-            <LinearLayout
-                android:id="@+id/classesLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp">
+            <ListView
+                android:id="@+id/classList"
+                android:layout_width="match_parent"
+                android:layout_height="603dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.492"></ListView>
+        </LinearLayout>
 
-                <ListView
-                    android:id="@+id/classList"
-                    android:layout_width="359dp"
-                    android:layout_height="541dp"
-                    android:layout_marginTop="10dp"
-                    android:headerDividersEnabled="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
+        <LinearLayout
+            android:id="@+id/editClassWindow"
+            android:layout_width="325dp"
+            android:layout_centerInParent="true"
+            android:layout_height="529dp"
+            android:visibility="gone"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/editClassName"
+                    android:layout_width="149dp"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="72dp"
+                    android:ems="10"
+                    android:hint="Enter a class name"
+                    android:inputType="textPersonName"
+                    app:layout_constraintBottom_toTopOf="@+id/editClassDescription"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.236"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.492" />
-            </LinearLayout>
+                    app:layout_constraintVertical_bias="0.965" />
 
-            <LinearLayout
-                android:id="@+id/editClassWindow"
-                android:layout_width="325dp"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/round"
-                android:visibility="gone">
+                <EditText
+                    android:id="@+id/editClassDescription"
+                    android:layout_width="232dp"
+                    android:layout_height="87dp"
+                    android:layout_marginBottom="68dp"
+                    android:ems="10"
+                    android:hint="Enter a class description"
+                    android:inputType="textPersonName"
+                    app:layout_constraintBottom_toTopOf="@+id/completeClassEdit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.451"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="417dp">
+                <Button
+                    android:id="@+id/completeClassEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:text="Done"
+                    app:layout_constraintBottom_toTopOf="@+id/deleteClassButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                    <EditText
-                        android:id="@+id/editClassName"
-                        android:layout_width="149dp"
-                        android:layout_height="44dp"
-                        android:layout_marginTop="48dp"
-                        android:ems="10"
-                        android:hint="Enter a class name"
-                        android:inputType="textPersonName"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.238"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editClassDescription"
-                        android:layout_width="232dp"
-                        android:layout_height="87dp"
-                        android:layout_marginTop="48dp"
-                        android:ems="10"
-                        android:hint="Enter a class description"
-                        android:inputType="textPersonName"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.451"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editClassName" />
-
-                    <Button
-                        android:id="@+id/completeClassEdit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="Done"
-                        app:layout_constraintBottom_toTopOf="@+id/deleteClassButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.497"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editClassDescription"
-                        app:layout_constraintVertical_bias="0.84" />
-
-                    <Button
-                        android:id="@+id/deleteClassButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="32dp"
-                        android:backgroundTint="#bf0000"
-                        android:text="Delete class"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <Button
-                        android:id="@+id/enrollButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="enroll now"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editClassDescription"
-                        app:layout_constraintVertical_bias="0.297" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </LinearLayout>
-            <!--<LinearLayout
-                android:id="@+id/searchClassTypesLayout"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:visibility="gone">
-                <ListView
-                    android:id="@+id/searchClassTypes"
-                    android:layout_width="359dp"
-                    android:layout_height="541dp"
-                    android:layout_marginTop="10dp"
-                    android:headerDividersEnabled="false"
+                <Button
+                    android:id="@+id/deleteClassButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="84dp"
+                    android:text="Delete class"
+                    android:backgroundTint="#bf0000"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.492"/>
-            </LinearLayout>-->
-        </RelativeLayout>
-    </ScrollView>
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/classSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="84dp"
-        android:ems="10"
-        android:hint="Search a class by name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toStartOf="@+id/classTypeSearchButton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.027" />
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/classTypeSearchButton"
-        android:layout_width="38dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/_4px_search_icon_svg" />
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

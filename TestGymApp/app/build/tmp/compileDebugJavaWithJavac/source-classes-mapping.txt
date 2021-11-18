@@ -1,9 +1,9 @@
 com/example/testgymapp/User.java
  com.example.testgymapp.User
-com/example/testgymapp/Administrator.java
- com.example.testgymapp.Administrator
-com/example/testgymapp/data/LoginRepository.java
- com.example.testgymapp.data.LoginRepository
+com/example/testgymapp/databinding/ActivityGymClassesBinding.java
+ com.example.testgymapp.databinding.ActivityGymClassesBinding
+com/example/testgymapp/databinding/ActivityAdminPageBinding.java
+ com.example.testgymapp.databinding.ActivityAdminPageBinding
 com/example/testgymapp/data/LoginDataSource.java
  com.example.testgymapp.data.LoginDataSource
 com/example/testgymapp/data/Result.java
@@ -11,18 +11,21 @@ com/example/testgymapp/data/Result.java
  com.example.testgymapp.data.Result$1
  com.example.testgymapp.data.Result$Error
  com.example.testgymapp.data.Result$Success
-com/example/testgymapp/GymMember.java
- com.example.testgymapp.GymMember
+com/example/testgymapp/databinding/ActivitySearchListBinding.java
+ com.example.testgymapp.databinding.ActivitySearchListBinding
 com/example/testgymapp/BuildConfig.java
  com.example.testgymapp.BuildConfig
-com/example/testgymapp/Instructor.java
- com.example.testgymapp.Instructor
-com/example/testgymapp/GymClass.java
- com.example.testgymapp.GymClass
+com/example/testgymapp/databinding/ActivityUserAccountPageBinding.java
+ com.example.testgymapp.databinding.ActivityUserAccountPageBinding
+com/example/testgymapp/databinding/ActivityGymMemberPageBinding.java
+ com.example.testgymapp.databinding.ActivityGymMemberPageBinding
 com/example/testgymapp/data/model/LoggedInUser.java
  com.example.testgymapp.data.model.LoggedInUser
-com/example/testgymapp/databinding/ActivityInstructorPageBinding.java
- com.example.testgymapp.databinding.ActivityInstructorPageBinding
+com/example/testgymapp/GymMemberPage.java
+ com.example.testgymapp.GymMemberPage
+ com.example.testgymapp.GymMemberPage$1
+com/example/testgymapp/GymClass.java
+ com.example.testgymapp.GymClass
 com/example/testgymapp/AdminPage.java
  com.example.testgymapp.AdminPage
  com.example.testgymapp.AdminPage$1
@@ -32,6 +35,8 @@ com/example/testgymapp/AdminPage.java
  com.example.testgymapp.AdminPage$5
  com.example.testgymapp.AdminPage$6
  com.example.testgymapp.AdminPage$7
+com/example/testgymapp/Administrator.java
+ com.example.testgymapp.Administrator
 com/example/testgymapp/searchList.java
  com.example.testgymapp.searchList
 com/example/testgymapp/UserAccountPage.java
@@ -41,27 +46,22 @@ com/example/testgymapp/UserAccountPage.java
  com.example.testgymapp.UserAccountPage$3
  com.example.testgymapp.UserAccountPage$4
  com.example.testgymapp.UserAccountPage$5
-com/example/testgymapp/GymMemberPage.java
- com.example.testgymapp.GymMemberPage
- com.example.testgymapp.GymMemberPage$1
-com/example/testgymapp/databinding/ActivityGymClassesBinding.java
- com.example.testgymapp.databinding.ActivityGymClassesBinding
-com/example/testgymapp/databinding/ActivityAdminPageBinding.java
- com.example.testgymapp.databinding.ActivityAdminPageBinding
+com/example/testgymapp/data/LoginRepository.java
+ com.example.testgymapp.data.LoginRepository
 com/example/testgymapp/databinding/ActivityMainBinding.java
  com.example.testgymapp.databinding.ActivityMainBinding
+com/example/testgymapp/GymMember.java
+ com.example.testgymapp.GymMember
 com/example/testgymapp/databinding/ActivityCreateAccountBinding.java
  com.example.testgymapp.databinding.ActivityCreateAccountBinding
 com/example/testgymapp/databinding/GymClasssItemBinding.java
  com.example.testgymapp.databinding.GymClasssItemBinding
-com/example/testgymapp/databinding/ActivitySearchListBinding.java
- com.example.testgymapp.databinding.ActivitySearchListBinding
-com/example/testgymapp/databinding/ActivityUserAccountPageBinding.java
- com.example.testgymapp.databinding.ActivityUserAccountPageBinding
+com/example/testgymapp/Instructor.java
+ com.example.testgymapp.Instructor
 com/example/testgymapp/databinding/ActivityInstructorClassesBinding.java
  com.example.testgymapp.databinding.ActivityInstructorClassesBinding
-com/example/testgymapp/databinding/ActivityGymMemberPageBinding.java
- com.example.testgymapp.databinding.ActivityGymMemberPageBinding
+com/example/testgymapp/databinding/ActivityInstructorPageBinding.java
+ com.example.testgymapp.databinding.ActivityInstructorPageBinding
 com/example/testgymapp/CreateAccount.java
  com.example.testgymapp.CreateAccount
  com.example.testgymapp.CreateAccount$1
@@ -76,6 +76,10 @@ com/example/testgymapp/MainActivity.java
 com/example/testgymapp/InstructorPage.java
  com.example.testgymapp.InstructorPage
  com.example.testgymapp.InstructorPage$1
+ com.example.testgymapp.InstructorPage$10
+ com.example.testgymapp.InstructorPage$11
+ com.example.testgymapp.InstructorPage$12
+ com.example.testgymapp.InstructorPage$13
  com.example.testgymapp.InstructorPage$2
  com.example.testgymapp.InstructorPage$3
  com.example.testgymapp.InstructorPage$4
@@ -83,6 +87,7 @@ com/example/testgymapp/InstructorPage.java
  com.example.testgymapp.InstructorPage$6
  com.example.testgymapp.InstructorPage$7
  com.example.testgymapp.InstructorPage$8
+ com.example.testgymapp.InstructorPage$9
 com/example/testgymapp/instructorClasses.java
  com.example.testgymapp.instructorClasses
  com.example.testgymapp.instructorClasses$1

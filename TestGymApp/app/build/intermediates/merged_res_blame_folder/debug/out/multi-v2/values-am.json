@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Zsalm\\OneDrive\\Documents\\School\\SEG2105\\Project\\Project-zsalm034-patch-1\\Project-zsalm034-patch-1\\TestGym\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-am\\values-am.xml",
+            "outputFile": "C:\\Users\\Zsalm\\OneDrive\\Desktop\\gymapp\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-am\\values-am.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Zsalm\\.gradle\\caches\\transforms-3\\6adff63397c1ac50e331d47bdf613af2\\transformed\\jetified-play-services-basement-17.1.0\\res\\values-am\\values.xml",

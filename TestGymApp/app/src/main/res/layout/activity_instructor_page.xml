@@ -11,12 +11,13 @@
         android:id="@+id/welcomeMessageInstructor"
         android:layout_width="327dp"
         android:layout_height="50dp"
+        android:layout_marginTop="120dp"
         android:gravity="center"
         android:text=""
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginTop="120dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonLayout" />
@@ -26,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <ListView
             android:id="@+id/classList"
@@ -43,13 +44,14 @@
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             android:text="back" />
+
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/searchLayout"
         android:layout_width="413dp"
         android:layout_height="705dp"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonLayout">
@@ -167,5 +169,95 @@
             app:layout_constraintTop_toBottomOf="@+id/myClasses" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/instructorSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="-116dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/instName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginEnd="40dp"
+            android:text="Instructor Name"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/instNameField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="70dp"
+            android:ems="10"
+            android:hint="Enter Instructor Name Here"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instName" />
+
+        <Button
+            android:id="@+id/searchButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="70dp"
+            android:text="Search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/instNameField" />
+
+        <Button
+            android:id="@+id/backButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="70dp"
+            android:text="Back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchButton2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/instView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/instList"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginTop="100dp">
+
+        </ListView>
+
+        <Button
+            android:id="@+id/doneButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="70dp"
+            android:text="Done" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

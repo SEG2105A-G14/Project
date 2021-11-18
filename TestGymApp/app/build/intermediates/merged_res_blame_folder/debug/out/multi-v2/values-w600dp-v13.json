@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Zsalm\\OneDrive\\Documents\\School\\SEG2105\\Project\\Project-zsalm034-patch-1\\Project-zsalm034-patch-1\\TestGym\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w600dp-v13\\values-w600dp-v13.xml",
+            "outputFile": "C:\\Users\\Zsalm\\OneDrive\\Desktop\\gymapp\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w600dp-v13\\values-w600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Zsalm\\OneDrive\\Documents\\School\\SEG2105\\Project\\Project-zsalm034-patch-1\\Project-zsalm034-patch-1\\TestGym\\app\\src\\main\\res\\values-w600dp\\dimens.xml",
+                    "source": "C:\\Users\\Zsalm\\OneDrive\\Desktop\\gymapp\\TestGymApp\\app\\src\\main\\res\\values-w600dp\\dimens.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",

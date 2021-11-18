@@ -27,6 +27,9 @@ public final class ActivityInstructorPageBinding implements ViewBinding {
   public final Button backButton;
 
   @NonNull
+  public final Button backButton2;
+
+  @NonNull
   public final ConstraintLayout buttonLayout;
 
   @NonNull
@@ -48,10 +51,31 @@ public final class ActivityInstructorPageBinding implements ViewBinding {
   public final Button doneButton;
 
   @NonNull
+  public final Button doneButton2;
+
+  @NonNull
+  public final ListView instList;
+
+  @NonNull
+  public final TextView instName;
+
+  @NonNull
+  public final EditText instNameField;
+
+  @NonNull
+  public final LinearLayout instView;
+
+  @NonNull
+  public final ConstraintLayout instructorSearch;
+
+  @NonNull
   public final Button myClasses;
 
   @NonNull
   public final Button searchButton;
+
+  @NonNull
+  public final Button searchButton2;
 
   @NonNull
   public final Button searchClass;
@@ -66,14 +90,19 @@ public final class ActivityInstructorPageBinding implements ViewBinding {
   public final TextView welcomeMessageInstructor;
 
   private ActivityInstructorPageBinding(@NonNull ConstraintLayout rootView,
-      @NonNull Button backButton, @NonNull ConstraintLayout buttonLayout,
-      @NonNull ListView classList, @NonNull TextView className, @NonNull EditText classNameField,
+      @NonNull Button backButton, @NonNull Button backButton2,
+      @NonNull ConstraintLayout buttonLayout, @NonNull ListView classList,
+      @NonNull TextView className, @NonNull EditText classNameField,
       @NonNull LinearLayout classSearchView, @NonNull Button createClass,
-      @NonNull Button doneButton, @NonNull Button myClasses, @NonNull Button searchButton,
-      @NonNull Button searchClass, @NonNull Button searchInstructor,
-      @NonNull ConstraintLayout searchLayout, @NonNull TextView welcomeMessageInstructor) {
+      @NonNull Button doneButton, @NonNull Button doneButton2, @NonNull ListView instList,
+      @NonNull TextView instName, @NonNull EditText instNameField, @NonNull LinearLayout instView,
+      @NonNull ConstraintLayout instructorSearch, @NonNull Button myClasses,
+      @NonNull Button searchButton, @NonNull Button searchButton2, @NonNull Button searchClass,
+      @NonNull Button searchInstructor, @NonNull ConstraintLayout searchLayout,
+      @NonNull TextView welcomeMessageInstructor) {
     this.rootView = rootView;
     this.backButton = backButton;
+    this.backButton2 = backButton2;
     this.buttonLayout = buttonLayout;
     this.classList = classList;
     this.className = className;
@@ -81,8 +110,15 @@ public final class ActivityInstructorPageBinding implements ViewBinding {
     this.classSearchView = classSearchView;
     this.createClass = createClass;
     this.doneButton = doneButton;
+    this.doneButton2 = doneButton2;
+    this.instList = instList;
+    this.instName = instName;
+    this.instNameField = instNameField;
+    this.instView = instView;
+    this.instructorSearch = instructorSearch;
     this.myClasses = myClasses;
     this.searchButton = searchButton;
+    this.searchButton2 = searchButton2;
     this.searchClass = searchClass;
     this.searchInstructor = searchInstructor;
     this.searchLayout = searchLayout;
@@ -119,6 +155,12 @@ public final class ActivityInstructorPageBinding implements ViewBinding {
       id = R.id.backButton;
       Button backButton = ViewBindings.findChildViewById(rootView, id);
       if (backButton == null) {
+        break missingId;
+      }
+
+      id = R.id.backButton2;
+      Button backButton2 = ViewBindings.findChildViewById(rootView, id);
+      if (backButton2 == null) {
         break missingId;
       }
 
@@ -164,6 +206,42 @@ public final class ActivityInstructorPageBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.doneButton2;
+      Button doneButton2 = ViewBindings.findChildViewById(rootView, id);
+      if (doneButton2 == null) {
+        break missingId;
+      }
+
+      id = R.id.instList;
+      ListView instList = ViewBindings.findChildViewById(rootView, id);
+      if (instList == null) {
+        break missingId;
+      }
+
+      id = R.id.instName;
+      TextView instName = ViewBindings.findChildViewById(rootView, id);
+      if (instName == null) {
+        break missingId;
+      }
+
+      id = R.id.instNameField;
+      EditText instNameField = ViewBindings.findChildViewById(rootView, id);
+      if (instNameField == null) {
+        break missingId;
+      }
+
+      id = R.id.instView;
+      LinearLayout instView = ViewBindings.findChildViewById(rootView, id);
+      if (instView == null) {
+        break missingId;
+      }
+
+      id = R.id.instructorSearch;
+      ConstraintLayout instructorSearch = ViewBindings.findChildViewById(rootView, id);
+      if (instructorSearch == null) {
+        break missingId;
+      }
+
       id = R.id.myClasses;
       Button myClasses = ViewBindings.findChildViewById(rootView, id);
       if (myClasses == null) {
@@ -173,6 +251,12 @@ public final class ActivityInstructorPageBinding implements ViewBinding {
       id = R.id.searchButton;
       Button searchButton = ViewBindings.findChildViewById(rootView, id);
       if (searchButton == null) {
+        break missingId;
+      }
+
+      id = R.id.searchButton2;
+      Button searchButton2 = ViewBindings.findChildViewById(rootView, id);
+      if (searchButton2 == null) {
         break missingId;
       }
 
@@ -200,9 +284,10 @@ public final class ActivityInstructorPageBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityInstructorPageBinding((ConstraintLayout) rootView, backButton,
+      return new ActivityInstructorPageBinding((ConstraintLayout) rootView, backButton, backButton2,
           buttonLayout, classList, className, classNameField, classSearchView, createClass,
-          doneButton, myClasses, searchButton, searchClass, searchInstructor, searchLayout,
+          doneButton, doneButton2, instList, instName, instNameField, instView, instructorSearch,
+          myClasses, searchButton, searchButton2, searchClass, searchInstructor, searchLayout,
           welcomeMessageInstructor);
     }
     String missingId = rootView.getResources().getResourceName(id);

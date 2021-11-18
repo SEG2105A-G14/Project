@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,16 +32,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class InstructorPage extends AppCompatActivity {
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    DatabaseReference mRef;
-    TextView welcomeText;
-    EditText classNameField;
-    ListView classList;
-    Button classCreate, myClasses, searchClass, searchButton, backButton, doneButton;
-    LinearLayout classSearchView;
-    ConstraintLayout buttonLayout, searchLayout, instructorSearch;
-    ArrayList<String> className;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private DatabaseReference mRef;
+    private TextView welcomeText;
+    private EditText classNameField, instNameField;
+    private ListView classList, instList;
+    private Button classCreate, myClasses, searchClass, searchButton, backButton, doneButton, searchButton2, backButton2, searchInstructor, doneButton2;
+    private LinearLayout classSearchView, instView;
+    private String userName;
+    private ConstraintLayout buttonLayout, searchLayout, instructorSearch;
+    private ArrayList<String> className;
     private static int SPLASH_TIME_OUT = 2000;
 
 
@@ -63,12 +65,20 @@ public class InstructorPage extends AppCompatActivity {
         classSearchView = findViewById(R.id.classSearchView);
         backButton = findViewById(R.id.backButton);
         doneButton = findViewById(R.id.doneButton);
+        instructorSearch = findViewById(R.id.instructorSearch);
+        instNameField = findViewById(R.id.instNameField);
+        backButton2 = findViewById(R.id.backButton2);
+        searchButton2 = findViewById(R.id.searchButton2);
+        searchInstructor = findViewById(R.id.searchInstructor);
+        doneButton2 = findViewById(R.id.doneButton2);
+        instList = findViewById(R.id.instList);
+        instView = findViewById(R.id.instView);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference();
 
-        String userName = getIntent().getStringExtra("name");
+        userName = getIntent().getStringExtra("name");
         String role = getIntent().getStringExtra("role");
         String message = "Welcome "+userName+"! You are logged in as an "+role;
 
@@ -82,6 +92,44 @@ public class InstructorPage extends AppCompatActivity {
                 welcomeText.setVisibility(View.INVISIBLE);
             }
         }, SPLASH_TIME_OUT);
+
+        searchInstructor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                instructorSearch.setVisibility(View.VISIBLE);
+                buttonLayout.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        backButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                instructorSearch.setVisibility(View.INVISIBLE);
+                buttonLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        searchButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = instNameField.getText().toString().toLowerCase().trim();
+                setSearchInstructorAdapter(s);
+
+                instView.setVisibility(View.VISIBLE);
+                instructorSearch.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+        doneButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                instNameField.setText("");
+
+                instView.setVisibility(View.INVISIBLE);
+                instructorSearch.setVisibility(View.VISIBLE);
+            }
+        });
 
         classCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,8 +201,6 @@ public class InstructorPage extends AppCompatActivity {
                 for(DataSnapshot snapshot1: snapshot.getChildren()){
                     String clssName = snapshot1.getKey().toString();
 
-                    System.out.println(clssName);
-
                     if(clssName.contains(searchString)){
                         for(DataSnapshot classes: snapshot1.getChildren()){
                             String className = classes.child("className").getValue().toString();
@@ -177,5 +223,37 @@ public class InstructorPage extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setSearchInstructorAdapter(String searchString){
+        mRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                final ArrayList<String> nameList = new ArrayList<>();
+                final ArrayAdapter adapter = new ArrayAdapter<String>(InstructorPage.this, R.layout.gym_classs_item, nameList);
+                instList.setAdapter(adapter);
+                for(DataSnapshot users: snapshot.getChildren()){
+                    if(users.child("role").getValue().toString().toLowerCase().equals("instructor")){
+                        String name = users.child("name").getValue().toString().toLowerCase();
+                        if(name.equals(userName)){ }
+
+                        else if(name.contains(searchString)){
+                            String email = users.child("email").getValue().toString();
+                            nameList.add("Instructor Name: "+name+"\n"+"email: "+email);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }else if(nameList.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "No such search inquiries exist", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }

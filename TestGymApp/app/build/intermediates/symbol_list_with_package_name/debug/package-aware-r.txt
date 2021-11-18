@@ -1980,6 +1980,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id backButton
+id backButton2
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -2073,6 +2074,7 @@ id disablePostScroll
 id disableScroll
 id disjoint
 id doneButton
+id doneButton2
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -2143,8 +2145,13 @@ id image
 id immediateStop
 id included
 id info
+id instList
+id instName
+id instNameField
+id instView
 id instructorAccountsTitle
 id instructorClass
+id instructorSearch
 id instuctorName
 id invisible
 id inward
@@ -2295,6 +2302,7 @@ id scrollIndicatorUp
 id scrollView
 id scrollable
 id searchButton
+id searchButton2
 id searchClass
 id searchInstructor
 id searchLayout

@@ -6,9 +6,9 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
-8-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml
+8-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="31" />
-9-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml
+9-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
 11-->[com.google.firebase:firebase-auth:21.0.1] C:\Users\Zsalm\.gradle\caches\transforms-3\4a5bd81f2d39381151216137588893e3\transformed\jetified-firebase-auth-21.0.1\AndroidManifest.xml:23:5-67
@@ -24,87 +24,87 @@
 14-->[com.google.android.gms:play-services-measurement:19.0.2] C:\Users\Zsalm\.gradle\caches\transforms-3\1d4b8a4caa0d0798b6a2fb3d69328b21\transformed\jetified-play-services-measurement-19.0.2\AndroidManifest.xml:26:22-107
 15
 16    <application
-16-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:5:5-45:19
+16-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:5:5-45:19
 17        android:allowBackup="true"
-17-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:6:9-35
+17-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:6:9-35
 18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 18-->[androidx.core:core:1.5.0] C:\Users\Zsalm\.gradle\caches\transforms-3\1c82df0e58fbd0ba966b0ae0d34659c1\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
 19        android:debuggable="true"
 20        android:extractNativeLibs="false"
 21        android:icon="@mipmap/ic_launcher"
-21-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:7:9-43
+21-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:7:9-43
 22        android:label="@string/app_name"
-22-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:8:9-41
+22-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:8:9-41
 23        android:roundIcon="@mipmap/ic_launcher_round"
-23-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:9:9-54
+23-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:9:9-54
 24        android:supportsRtl="true"
-24-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:10:9-35
+24-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:10:9-35
 25        android:testOnly="true"
 26        android:theme="@style/Theme.TestGymApp" >
-26-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:11:9-48
+26-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:11:9-48
 27        <activity
-27-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:12:9-14:39
+27-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:12:9-14:39
 28            android:name="com.example.testgymapp.searchList"
-28-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:13:13-39
+28-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:13:13-39
 29            android:exported="true" />
-29-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:14:13-36
+29-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:14:13-36
 30        <activity
-30-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:15:9-17:40
+30-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:15:9-17:40
 31            android:name="com.example.testgymapp.instructorClasses"
-31-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:16:13-46
+31-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:16:13-46
 32            android:exported="false" />
-32-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:17:13-37
+32-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:17:13-37
 33        <activity
-33-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:18:9-20:39
+33-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:18:9-20:39
 34            android:name="com.example.testgymapp.UserAccountPage"
-34-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:19:13-44
+34-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:19:13-44
 35            android:exported="true" />
-35-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:20:13-36
+35-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:20:13-36
 36        <activity
-36-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:21:9-23:39
+36-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:21:9-23:39
 37            android:name="com.example.testgymapp.GymClasses"
-37-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:22:13-39
+37-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:22:13-39
 38            android:exported="true" />
-38-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:23:13-36
+38-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:23:13-36
 39        <activity
-39-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:24:9-26:39
+39-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:24:9-26:39
 40            android:name="com.example.testgymapp.AdminPage"
-40-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:25:13-38
+40-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:25:13-38
 41            android:exported="true" />
-41-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:26:13-36
+41-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:26:13-36
 42        <activity
-42-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:27:9-29:39
+42-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:27:9-29:39
 43            android:name="com.example.testgymapp.InstructorPage"
-43-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:28:13-43
+43-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:28:13-43
 44            android:exported="true" />
-44-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:29:13-36
+44-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:29:13-36
 45        <activity
-45-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:30:9-32:39
+45-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:30:9-32:39
 46            android:name="com.example.testgymapp.GymMemberPage"
-46-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:31:13-42
+46-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:31:13-42
 47            android:exported="true" />
-47-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:32:13-36
+47-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:32:13-36
 48        <activity
-48-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:33:9-35:39
+48-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:33:9-35:39
 49            android:name="com.example.testgymapp.CreateAccount"
-49-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:34:13-42
+49-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:34:13-42
 50            android:exported="true" />
-50-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:35:13-36
+50-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:35:13-36
 51        <activity
-51-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:36:9-44:20
+51-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:36:9-44:20
 52            android:name="com.example.testgymapp.MainActivity"
-52-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:37:13-41
+52-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:37:13-41
 53            android:exported="true" >
-53-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:38:13-36
+53-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:38:13-36
 54            <intent-filter>
-54-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:39:13-43:29
+54-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:39:13-43:29
 55                <action android:name="android.intent.action.MAIN" />
-55-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:40:17-69
-55-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:40:25-66
+55-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:40:17-69
+55-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:40:25-66
 56
 57                <category android:name="android.intent.category.LAUNCHER" />
-57-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:42:17-77
-57-->C:\Users\Zsalm\OneDrive\Documents\School\SEG2105\Project\Project-zsalm034-patch-1\Project-zsalm034-patch-1\TestGym\app\src\main\AndroidManifest.xml:42:27-74
+57-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:42:17-77
+57-->C:\Users\Zsalm\OneDrive\Desktop\gymapp\TestGymApp\app\src\main\AndroidManifest.xml:42:27-74
 58            </intent-filter>
 59        </activity>
 60        <activity

@@ -1,16 +1,16 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-w1240dp-v13\\values-w1240dp-v13.xml",
+            "outputFile": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w1240dp-v13/values-w1240dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\values-w1240dp\\dimens.xml",
+                    "source": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/src/main/res/values-w1240dp/dimens.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
-                        "startOffsets": "17",
+                        "startOffsets": "16",
                         "endColumns": "58",
-                        "endOffsets": "71"
+                        "endOffsets": "70"
                     },
                     "to": {
                         "startLines": "2",

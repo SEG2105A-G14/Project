@@ -1,38 +1,34 @@
 [
     {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_gym_classes.xml",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_gym_classes.xml"
+        "merged": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_admin_page.xml",
+        "source": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/src/main/res/layout/activity_admin_page.xml"
     },
     {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_user_account_page.xml",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_user_account_page.xml"
+        "merged": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_user_account_page.xml",
+        "source": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/src/main/res/layout/activity_user_account_page.xml"
     },
     {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_gym_member_page.xml",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_gym_member_page.xml"
+        "merged": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_create_account.xml",
+        "source": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/src/main/res/layout/activity_create_account.xml"
     },
     {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\gym_classs_item.xml",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\gym_classs_item.xml"
+        "merged": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/gym_classs_item.xml",
+        "source": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/src/main/res/layout/gym_classs_item.xml"
     },
     {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_home.xml",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_home.xml"
+        "merged": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_gym_member_page.xml",
+        "source": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/src/main/res/layout/activity_gym_member_page.xml"
     },
     {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/src/main/res/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_admin_page.xml",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_admin_page.xml"
+        "merged": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_gym_classes.xml",
+        "source": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/src/main/res/layout/activity_gym_classes.xml"
     },
     {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_instructor_page.xml",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_instructor_page.xml"
-    },
-    {
-        "merged": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_create_account.xml",
-        "source": "C:\\Users\\Zsalm\\AndroidStudioProjects\\TestGymApp\\app\\src\\main\\res\\layout\\activity_create_account.xml"
+        "merged": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_instructor_page.xml",
+        "source": "/Users/aze/Desktop/Uottawa Fall 2021/Introduction to Software Engineering/Project/Project/TestGymApp/app/src/main/res/layout/activity_instructor_page.xml"
     }
 ]

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,6 +23,15 @@ import java.lang.String;
 public final class ActivityGymClassesBinding implements ViewBinding {
   @NonNull
   private final ConstraintLayout rootView;
+
+  @NonNull
+  public final Spinner classDay;
+
+  @NonNull
+  public final TextView classDesc;
+
+  @NonNull
+  public final Spinner classDifficulty;
 
   @NonNull
   public final ListView classList;
@@ -40,17 +51,51 @@ public final class ActivityGymClassesBinding implements ViewBinding {
   @NonNull
   public final LinearLayout editClassWindow;
 
-  private ActivityGymClassesBinding(@NonNull ConstraintLayout rootView, @NonNull ListView classList,
+  @NonNull
+  public final Button endClassCreate;
+
+  @NonNull
+  public final Spinner endTime;
+
+  @NonNull
+  public final Button exit;
+
+  @NonNull
+  public final LinearLayout instructorClass;
+
+  @NonNull
+  public final EditText maxCap;
+
+  @NonNull
+  public final TextView nameCLass;
+
+  @NonNull
+  public final Spinner startTime;
+
+  private ActivityGymClassesBinding(@NonNull ConstraintLayout rootView, @NonNull Spinner classDay,
+      @NonNull TextView classDesc, @NonNull Spinner classDifficulty, @NonNull ListView classList,
       @NonNull Button completeClassEdit, @NonNull Button deleteClassButton,
       @NonNull EditText editClassDescription, @NonNull EditText editClassName,
-      @NonNull LinearLayout editClassWindow) {
+      @NonNull LinearLayout editClassWindow, @NonNull Button endClassCreate,
+      @NonNull Spinner endTime, @NonNull Button exit, @NonNull LinearLayout instructorClass,
+      @NonNull EditText maxCap, @NonNull TextView nameCLass, @NonNull Spinner startTime) {
     this.rootView = rootView;
+    this.classDay = classDay;
+    this.classDesc = classDesc;
+    this.classDifficulty = classDifficulty;
     this.classList = classList;
     this.completeClassEdit = completeClassEdit;
     this.deleteClassButton = deleteClassButton;
     this.editClassDescription = editClassDescription;
     this.editClassName = editClassName;
     this.editClassWindow = editClassWindow;
+    this.endClassCreate = endClassCreate;
+    this.endTime = endTime;
+    this.exit = exit;
+    this.instructorClass = instructorClass;
+    this.maxCap = maxCap;
+    this.nameCLass = nameCLass;
+    this.startTime = startTime;
   }
 
   @Override
@@ -80,6 +125,24 @@ public final class ActivityGymClassesBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.classDay;
+      Spinner classDay = ViewBindings.findChildViewById(rootView, id);
+      if (classDay == null) {
+        break missingId;
+      }
+
+      id = R.id.classDesc;
+      TextView classDesc = ViewBindings.findChildViewById(rootView, id);
+      if (classDesc == null) {
+        break missingId;
+      }
+
+      id = R.id.classDifficulty;
+      Spinner classDifficulty = ViewBindings.findChildViewById(rootView, id);
+      if (classDifficulty == null) {
+        break missingId;
+      }
+
       id = R.id.classList;
       ListView classList = ViewBindings.findChildViewById(rootView, id);
       if (classList == null) {
@@ -116,9 +179,52 @@ public final class ActivityGymClassesBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityGymClassesBinding((ConstraintLayout) rootView, classList,
-          completeClassEdit, deleteClassButton, editClassDescription, editClassName,
-          editClassWindow);
+      id = R.id.endClassCreate;
+      Button endClassCreate = ViewBindings.findChildViewById(rootView, id);
+      if (endClassCreate == null) {
+        break missingId;
+      }
+
+      id = R.id.endTime;
+      Spinner endTime = ViewBindings.findChildViewById(rootView, id);
+      if (endTime == null) {
+        break missingId;
+      }
+
+      id = R.id.exit;
+      Button exit = ViewBindings.findChildViewById(rootView, id);
+      if (exit == null) {
+        break missingId;
+      }
+
+      id = R.id.instructorClass;
+      LinearLayout instructorClass = ViewBindings.findChildViewById(rootView, id);
+      if (instructorClass == null) {
+        break missingId;
+      }
+
+      id = R.id.maxCap;
+      EditText maxCap = ViewBindings.findChildViewById(rootView, id);
+      if (maxCap == null) {
+        break missingId;
+      }
+
+      id = R.id.nameCLass;
+      TextView nameCLass = ViewBindings.findChildViewById(rootView, id);
+      if (nameCLass == null) {
+        break missingId;
+      }
+
+      id = R.id.startTime;
+      Spinner startTime = ViewBindings.findChildViewById(rootView, id);
+      if (startTime == null) {
+        break missingId;
+      }
+
+      return new ActivityGymClassesBinding((ConstraintLayout) rootView, classDay, classDesc,
+          classDifficulty, classList, completeClassEdit, deleteClassButton, editClassDescription,
+          editClassName, editClassWindow, endClassCreate, endTime, exit, instructorClass, maxCap,
+          nameCLass, startTime);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

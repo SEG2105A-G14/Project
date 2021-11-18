@@ -100,7 +100,7 @@ public class AdminPage extends AppCompatActivity {
                     GymClass aGymClass= new GymClass(name, description);
                     if (name.length()!=0 && description.length()!=0) {
                         addGymClass(aGymClass);
-                        myRef.child("gymClasses").child(name).getRef().setValue(aGymClass);
+                        myRef.child("gymClassType").child(name).getRef().setValue(aGymClass);
                         createClassOverlay.setVisibility(View.GONE);
                         className.setText("");
                         classDescription.setText("");
@@ -138,7 +138,7 @@ public class AdminPage extends AppCompatActivity {
         final String[] name = {gymClass.getClassName()};
         final boolean[] success = {false};
 
-        myRef.child("gymClasses").addValueEventListener(new ValueEventListener() {
+        myRef.child("gymClassType").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.child(name[0]).exists() && className.getText().toString().length()!=0){

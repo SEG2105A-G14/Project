@@ -3,19 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/activity_admin_page.xml" value="0.28940217391304346" />
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/activity_create_account.xml" value="0.28940217391304346" />
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/activity_gym_classes.xml" value="0.28940217391304346" />
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/activity_gym_member_page.xml" value="0.28940217391304346" />
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/activity_home.xml" value="0.28306159420289856" />
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/activity_instructor_page.xml" value="0.28940217391304346" />
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/activity_main.xml" value="0.28940217391304346" />
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/activity_user_account_page.xml" value="0.28940217391304346" />
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/gym_classs_item.xml" value="0.28940217391304346" />
-        <entry key="..\:/Users/Zsalm/AndroidStudioProjects/TestGymApp/app/src/main/res/layout/row.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Zsalm/OneDrive/Documents/School/SEG2105/Project/Project-zsalm034-patch-1/Project-zsalm034-patch-1/TestGym/app/src/main/res/layout/activity_admin_page.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/Zsalm/OneDrive/Documents/School/SEG2105/Project/Project-zsalm034-patch-1/Project-zsalm034-patch-1/TestGym/app/src/main/res/layout/activity_gym_classes.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Zsalm/OneDrive/Documents/School/SEG2105/Project/Project-zsalm034-patch-1/Project-zsalm034-patch-1/TestGym/app/src/main/res/layout/activity_gym_member_page.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Zsalm/OneDrive/Documents/School/SEG2105/Project/Project-zsalm034-patch-1/Project-zsalm034-patch-1/TestGym/app/src/main/res/layout/activity_instructor_classes.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Zsalm/OneDrive/Documents/School/SEG2105/Project/Project-zsalm034-patch-1/Project-zsalm034-patch-1/TestGym/app/src/main/res/layout/activity_instructor_page.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Zsalm/OneDrive/Documents/School/SEG2105/Project/Project-zsalm034-patch-1/Project-zsalm034-patch-1/TestGym/app/src/main/res/layout/activity_search_list.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Zsalm/OneDrive/Documents/School/SEG2105/Project/Project-zsalm034-patch-1/Project-zsalm034-patch-1/TestGym/app/src/main/res/layout/gym_classs_item.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Zsalm/OneDrive/Documents/School/SEG2105/Project/Project-zsalm034-patch-1/Project-zsalm034-patch-1/TestGym/app/src/main/res/menu/search_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
 </project>

@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestGymApp">
         <activity
+            android:name=".searchList"
+            android:exported="true" />
+        <activity
+            android:name=".instructorClasses"
+            android:exported="false" />
+        <activity
             android:name=".UserAccountPage"
             android:exported="true" />
         <activity

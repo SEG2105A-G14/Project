@@ -25,6 +25,12 @@
         android:testOnly="true"
         android:theme="@style/Theme.TestGymApp" >
         <activity
+            android:name="com.example.testgymapp.searchList"
+            android:exported="true" />
+        <activity
+            android:name="com.example.testgymapp.instructorClasses"
+            android:exported="false" />
+        <activity
             android:name="com.example.testgymapp.UserAccountPage"
             android:exported="true" />
         <activity

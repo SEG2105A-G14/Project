@@ -18,7 +18,6 @@ public class Instructor extends User{
     public boolean removeClass(GymClass gymClass){
         return classes.remove(gymClass);
     }
-
     public ArrayList<GymClass> getClasses() {
         return classes;
     }

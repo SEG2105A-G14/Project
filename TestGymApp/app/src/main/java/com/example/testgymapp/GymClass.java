@@ -99,7 +99,7 @@ public class GymClass {
     }
 
     public boolean addMember(User user) {
-        if (numberOfUsers<=maximumCapacity){
+        if (numberOfUsers<maximumCapacity){
             members.add(user);
             numberOfUsers+=1;
             return true;

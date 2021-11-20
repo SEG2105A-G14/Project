@@ -34,13 +34,14 @@ public class CreateAccount extends AppCompatActivity {
     private EditText password2;
     private Spinner  gymRoles;
     private Button signUpButton;
+    private DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         mdb = FirebaseDatabase.getInstance();
-
+        DatabaseReference ref = mdb.getReference();
 
         setContentView(R.layout.activity_create_account);
 
@@ -75,31 +76,11 @@ public class CreateAccount extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-
-                                        DatabaseReference ref = mdb.getReference();
-
                                       if (gymRoles.getSelectedItem().toString().equals("Gym Member")){
-                                          GymMember gymMember = new GymMember(username.getText().toString().trim(), email1.getText().toString().trim());
-                                          FirebaseUser mUser = mAuth.getCurrentUser();
-                                          assert mUser != null;
-                                          String uid = mUser.getUid();
-                                          ref.child("users").child(uid).setValue(gymMember);
-
-                                          Intent welcomePageIntent = new Intent(CreateAccount.this, GymMemberPage.class);
-                                          welcomePageIntent.putExtra("name", gymMember.getName());
-                                          startActivity(welcomePageIntent);
-
+                                          launchMemberPage();
                                       }
                                       else{
-                                          Instructor gymInstructor = new Instructor(username.getText().toString().trim(), email1.getText().toString().trim());
-                                          FirebaseUser mUser = mAuth.getCurrentUser();
-                                          assert mUser != null;
-                                          String uid = mUser.getUid();
-                                          ref.child("users").child(uid).setValue(gymInstructor);
-
-                                          Intent welcomePageIntent = new Intent(CreateAccount.this, InstructorPage.class);
-                                          welcomePageIntent.putExtra("name", gymInstructor.getName());
-                                          startActivity(welcomePageIntent);
+                                          launchInstructorPage();
                                       }
 
                                     }
@@ -113,8 +94,6 @@ public class CreateAccount extends AppCompatActivity {
 
     public boolean verifyEmail(){
         email1 = (EditText) findViewById(R.id.userEmail);
-        //String text = email1.getText().toString().trim();
-        //Pattern pattern = Pattern.compile("[a-zA-Z0-9]+\\\\.?[a-zA-Z0-9]+@[a-zA-Z]+\\\\.[a-zA-Z]+", Pattern.CASE_INSENSITIVE);
         return Patterns.EMAIL_ADDRESS.matcher(email1.getText()).matches();
     }
 
@@ -208,9 +187,31 @@ public class CreateAccount extends AppCompatActivity {
         String t2 = password2.getText().toString();
         return t1.equals(t2);
     }
+    public void launchMemberPage(){
+        GymMember gymMember = new GymMember(username.getText().toString().trim(), email1.getText().toString().trim());
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        assert mUser != null;
+        String uid = mUser.getUid();
+        ref.child("users").child(uid).setValue(gymMember);
 
-    public void uodateUI(){
+        Intent welcomePageIntent = new Intent(CreateAccount.this, GymMemberPage.class);
+        welcomePageIntent.putExtra("name", gymMember.getName());
+        welcomePageIntent.putExtra("role", gymMember.getRole());
 
+        startActivity(welcomePageIntent);
+        finish();
+    }
+    public void launchInstructorPage(){
+        Instructor gymInstructor = new Instructor(username.getText().toString().trim(), email1.getText().toString().trim());
+        FirebaseUser mUser = mAuth.getCurrentUser();
+        assert mUser != null;
+        String uid = mUser.getUid();
+        ref.child("users").child(uid).setValue(gymInstructor);
 
+        Intent welcomePageIntent = new Intent(CreateAccount.this, InstructorPage.class);
+        welcomePageIntent.putExtra("name", gymInstructor.getName());
+        welcomePageIntent.putExtra("role", gymInstructor.getRole());
+        startActivity(welcomePageIntent);
+        finish();
     }
 }

@@ -1,24 +1,35 @@
 package com.example.testgymapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.TestLooperManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,18 +42,26 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class InstructorPage extends AppCompatActivity {
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    DatabaseReference mRef;
-    TextView welcomeText;
-    EditText classNameField;
-    ListView classList;
-    Button classCreate, myClasses, searchClass, searchButton, backButton, doneButton;
-    LinearLayout classSearchView;
-    ConstraintLayout buttonLayout, searchLayout, instructorSearch;
-    ArrayList<String> className;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private DatabaseReference mRef;
+    private TextView welcomeText;
+    private EditText classNameField;
+    private ListView classList;
+    private ArrayList<String> className;
+    private Spinner day, startTime, endTime, difficulty;
+    private Button endClassEdit, deleteClassButton;
+    private EditText maxCap;
     private static int SPLASH_TIME_OUT = 2000;
-
+    private ListView profileOptions;
+    private NavigationView profileOptionsLayout;
+    private NavigationView sideNav;
+    private ListView menuOptions;
+    private ImageView showMenu;
+    private ImageView showProfile;
+    private ScrollView instructorClass;
+    private String id;
+    private DatabaseReference mRef2;
 
 
     @Override
@@ -52,27 +71,53 @@ public class InstructorPage extends AppCompatActivity {
 
         welcomeText = findViewById(R.id.welcomeMessageInstructor);
 
-        classCreate = findViewById(R.id.createClass);
-        myClasses = findViewById(R.id.myClasses);
-        searchClass = findViewById(R.id.searchClass);
-        searchButton = findViewById(R.id.searchButton);
-        buttonLayout = findViewById(R.id.buttonLayout);
-        searchLayout = findViewById(R.id.searchLayout);
         classNameField = findViewById(R.id.classNameField);
         classList = findViewById(R.id.classList);
-        classSearchView = findViewById(R.id.classSearchView);
-        backButton = findViewById(R.id.backButton);
-        doneButton = findViewById(R.id.doneButton);
+
+        showProfile = findViewById(R.id.topRightIcon);
+        showMenu= findViewById(R.id.topLeftIcon);
+        menuOptions = findViewById(R.id.navMenuOptions);
+        sideNav = findViewById(R.id.sideNav);
+        profileOptionsLayout = findViewById(R.id.profileOptionsMenu);
+        profileOptions = findViewById(R.id.profileOptionsList);
+        maxCap = findViewById(R.id.maxCap);
+        instructorClass = findViewById(R.id.instructorClass);
+        endClassEdit = findViewById(R.id.endClassEdit);
+        deleteClassButton = findViewById(R.id.deleteClassButton);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        mRef = FirebaseDatabase.getInstance().getReference();
+        id = mUser.getUid();
+        mRef = FirebaseDatabase.getInstance().getReference().child("users");
+        mRef2 = FirebaseDatabase.getInstance().getReference().child("gymClass");
+
+        day = findViewById(R.id.classDay);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        day.setAdapter(adapter1);
+
+        startTime = findViewById(R.id.startTime);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.times, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        startTime.setAdapter(adapter2);
+
+        endTime = findViewById(R.id.endTime);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.times, android.R.layout.simple_spinner_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        endTime.setAdapter(adapter3);
+
+        difficulty = findViewById(R.id.classDifficulty);
+        ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(this, R.array.difficulty, android.R.layout.simple_spinner_item);
+        adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        difficulty.setAdapter(adapter4);
 
         String userName = getIntent().getStringExtra("name");
         String role = getIntent().getStringExtra("role");
         String message = "Welcome "+userName+"! You are logged in as an "+role;
 
-        className = new ArrayList<>();
+//        className = new ArrayList<>();
+        final String[] dbName = new String[1];
+        final String[] nameValue = new String[1];
 
         welcomeText.setText(message);
 
@@ -83,93 +128,108 @@ public class InstructorPage extends AppCompatActivity {
             }
         }, SPLASH_TIME_OUT);
 
-        classCreate.setOnClickListener(new View.OnClickListener() {
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Available Classes");
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.nav_menu_options, options);
+        menuOptions.setAdapter(arrayAdapter);
+
+        menuOptions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position==0){
+                    Intent classesIntent = new Intent(getApplicationContext(), GymClasses.class);
+                    classesIntent.putExtra("role", role);
+                    classesIntent.putExtra("name", userName);
+                    startActivity(classesIntent);
+                }
+                sideNav.setVisibility(View.GONE);
+            }
+        });
+
+        showMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int state = sideNav.getVisibility()==View.VISIBLE? View.GONE:View.VISIBLE;
+                sideNav.setVisibility(state);
+                crossFade(sideNav, state);
+                profileOptionsLayout.setVisibility(View.GONE);
+            }
+        });
+
+        //Profile Menu Options
+        ArrayList<String> arrayList = new ArrayList<>();
+        ArrayAdapter<String> profileMenuAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.nav_menu_options, arrayList);
+        profileOptions.setAdapter(profileMenuAdapter);
+        profileMenuAdapter.add("Profile");
+        profileMenuAdapter.add("Sign out");
+
+        showProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent classes = new Intent(InstructorPage.this, GymClasses.class);
-                classes.putExtra("name", userName);
-                classes.putExtra("role", role);
-                startActivity(classes);
-
-            }
-        });
-        myClasses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent classes = new Intent(InstructorPage.this, instructorClasses.class);
-                classes.putExtra("name", userName);
-                classes.putExtra("role", role);
-                startActivity(classes);
+                sideNav.setVisibility(View.GONE);
+                int state = profileOptionsLayout.getVisibility()==View.VISIBLE?View.GONE:View.VISIBLE;
+                crossFade(profileOptionsLayout, state);
             }
         });
 
-        searchClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buttonLayout.setVisibility(View.INVISIBLE);
-                searchLayout.setVisibility(View.VISIBLE);
-
-            }
-        });
-
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = classNameField.getText().toString().trim().toLowerCase();
-                setAdapter(name);
-
-                searchLayout.setVisibility(View.INVISIBLE);
-                classSearchView.setVisibility(View.VISIBLE);
-            }
-        });
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchLayout.setVisibility(View.VISIBLE);
-                classSearchView.setVisibility(View.INVISIBLE);
-            }
-        });
-
-        doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                classNameField.setText("");
-                searchLayout.setVisibility(View.INVISIBLE);
-                buttonLayout.setVisibility(View.VISIBLE);
-            }
-        });
-
-
-    }
-
-    private void setAdapter(String searchString){
-        mRef.child("gymClass").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                final ArrayList<String> nameList = new ArrayList<>();
-                final ArrayAdapter adapter = new ArrayAdapter<String>(InstructorPage.this, R.layout.gym_classs_item, nameList);
-                classList.setAdapter(adapter);
-                for(DataSnapshot snapshot1: snapshot.getChildren()){
-                    String clssName = snapshot1.getKey().toString();
-
-                    System.out.println(clssName);
-
-                    if(clssName.contains(searchString)){
-                        for(DataSnapshot classes: snapshot1.getChildren()){
-                            String className = classes.child("className").getValue().toString();
-                            String day = classes.child("day").getValue().toString();
-                            String startTime = classes.child("startTime").getValue().toString();
-                            String endTime = classes.child("endTime").getValue().toString();
-                            nameList.add(className+" - "+day+" - "+startTime+" to "+endTime);
-                        }
-                        adapter.notifyDataSetChanged();
-                    }else if(nameList.isEmpty()){
-                        Toast.makeText(getApplicationContext(), "No such search inquiries exist", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(InstructorPage.this);
+        builder.setMessage("Are you sure you want to sign out ?")
+                .setTitle("Sign out").
+                setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
+                        Intent loginIntent = new Intent(InstructorPage.this, MainActivity.class);
+                        startActivity(loginIntent);
+                        finish();
                     }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        AlertDialog dialog = builder.create();
+
+        profileOptions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position==0){
 
                 }
+                else{
+                    dialog.show();
+                }
+            }
+        });
 
+        mRef.child(id).child("gymClasses").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                ArrayList<String> classNames = new ArrayList<>();
+                ArrayList<String> instructorNames = new ArrayList<>();
+                ArrayList<String> datesAndTimes = new ArrayList<>();
+
+                CustomClassList customClassList = new CustomClassList(InstructorPage.this, classNames, datesAndTimes, instructorNames);
+                classList.setAdapter(customClassList);
+
+                for(DataSnapshot classes:snapshot.getChildren()){
+                    String className = classes.child("className").getValue().toString();
+                    String day = classes.child("day").getValue().toString();
+                    String startTime = classes.child("startTime").getValue().toString();
+                    String endTime = classes.child("endTime").getValue().toString();
+                    String period = day.substring(0, 3) + ". " + startTime + " - " + endTime;
+
+                    classNames.add(className);
+                    datesAndTimes.add(period);
+                    instructorNames.add(userName);
+                }
+
+                customClassList.notifyDataSetChanged();
             }
 
             @Override
@@ -177,5 +237,239 @@ public class InstructorPage extends AppCompatActivity {
 
             }
         });
+
+
+        classList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String value = adapterView.getItemAtPosition(i).toString();
+                TextView listClassName = (TextView) view.findViewById(R.id.shortName);
+                TextView dayAndTime = (TextView) view.findViewById(R.id.shortDate);
+
+                String[] values = new String[2];
+                values[0] = listClassName.getText().toString();
+                values[1] = dayConv(dayAndTime.getText().toString().split("\\.")[0]).toLowerCase();
+                Log.d("STR", values[1]);
+
+                mRef.child(id).child("gymClasses").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(task.isSuccessful()){
+                            for (DataSnapshot classID: task.getResult().getChildren()){
+                                if(values[0].equals(classID.child("className").getValue().toString().toLowerCase()) && values[1].equals(classID.child("day").getValue().toString().toLowerCase())){
+                                    Log.d("Valid", "True");
+                                    nameValue[0] = values[0];
+                                    String days = classID.child("day").getValue().toString();
+                                    String start = classID.child("startTime").getValue().toString();
+                                    String end = classID.child("endTime").getValue().toString();
+                                    String diff = classID.child("difficulty").getValue().toString();
+                                    String maxCapacity = classID.child("maximumCapacity").getValue().toString();
+                                    dbName[0]= nameValue[0] + "_" + userName + "_" + days + "_" + start + "_" + end;
+
+                                    ArrayAdapter daySpinner = (ArrayAdapter) day.getAdapter();
+                                    int spinnerPos = daySpinner.getPosition(days);
+                                    day.setSelection(spinnerPos);
+
+                                    ArrayAdapter startSpinner = (ArrayAdapter) startTime.getAdapter();
+                                    spinnerPos = startSpinner.getPosition(start);
+                                    startTime.setSelection(spinnerPos);
+
+                                    ArrayAdapter endSpinner = (ArrayAdapter) endTime.getAdapter();
+                                    spinnerPos = endSpinner.getPosition(end);
+                                    endTime.setSelection(spinnerPos);
+
+                                    ArrayAdapter diffSpinner = (ArrayAdapter) difficulty.getAdapter();
+                                    spinnerPos = diffSpinner.getPosition(diff);
+                                    difficulty.setSelection(spinnerPos);
+
+                                    maxCap.setText(maxCapacity);
+
+                                    classList.setVisibility(View.GONE);
+                                    instructorClass.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        deleteClassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseReference gRef = FirebaseDatabase.getInstance().getReference().child("gymClass");
+                gRef.child(nameValue[0]).child(dbName[0]).removeValue();
+                mRef.child(id).child("gymClasses").child(dbName[0]).removeValue();
+                classList.setVisibility(View.VISIBLE);
+                instructorClass.setVisibility(View.GONE);
+            }
+        });
+
+        endClassEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final boolean[] clicked = {true};
+
+                DatabaseReference myRef2 = FirebaseDatabase.getInstance().getReference();
+
+                myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(!clicked[0]){
+
+                        }
+                        else{
+                            String d = snapshot.child("gymClassType").child(nameValue[0]).child("description").getValue().toString();
+                            String start = startTime.getSelectedItem().toString();
+                            String end = endTime.getSelectedItem().toString();
+                            String days = day.getSelectedItem().toString();
+                            String diff = difficulty.getSelectedItem().toString();
+
+                            int s1 = timeConv(start);
+                            int e1 = timeConv(end);
+
+                            String name = snapshot.child("users").child(id).child("name").getValue().toString();
+                            String email = snapshot.child("users").child(id).child("email").getValue().toString();
+                            Instructor tmp = new Instructor(name, email);
+                            if (s1 >= e1) {
+                                Toast.makeText(getApplicationContext(), "You have entered an invalid time frame, please select a valid time frame", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            Log.d("AAAAA", nameValue[0]);
+                            myRef2.child("gymClass").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    final boolean[] noTimeConf = {true};
+                                    final boolean[] noNameConf = {true};
+                                    int s = timeConv(start);
+                                    int e = timeConv(end);
+                                    for (DataSnapshot classID : snapshot.getChildren()) {
+                                        for (DataSnapshot classes : classID.getChildren()) {
+                                            int s2 = timeConv(classes.child("startTime").getValue().toString());
+                                            int e2 = timeConv(classes.child("endTime").getValue().toString());
+                                            if (days.equals(classes.child("day").getValue().toString())) {
+                                                if (nameValue[0].equals(classes.child("className").getValue().toString()) &&
+                                                        !userName.equals(classes.child("instructor").child("name").getValue().toString())) {
+                                                    noNameConf[0] = false;
+                                                    break;
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                    if(noNameConf[0] && verifyMaxCap()){
+                                        int cap = Integer.parseInt(maxCap.getText().toString());
+                                        String classID = nameValue[0] + "_" + name + "_" + days + "_" + start + "_" + end;
+
+                                        DatabaseReference gRef = FirebaseDatabase.getInstance().getReference().child("gymClass");
+                                        gRef.child(nameValue[0]).child(dbName[0]).removeValue();
+                                        mRef.child(id).child("gymClasses").child(dbName[0]).removeValue();
+
+                                        GymClass gymClass = new GymClass(nameValue[0], d, start, end, cap, days, diff, tmp);
+
+                                        myRef2.child("gymClass").child(nameValue[0]).child(classID).setValue(gymClass);
+                                        mRef.child(id).child("gymClasses").child(classID).setValue(gymClass);
+
+                                        clicked[0] = false;
+
+                                        classList.setVisibility(View.VISIBLE);
+                                        instructorClass.setVisibility(View.GONE);
+
+                                        Intent classes = new Intent(InstructorPage.this, InstructorPage.class);
+                                        classes.putExtra("name", userName);
+                                        classes.putExtra("role", role);
+                                        startActivity(classes);
+
+                                    }
+
+                                    else if (!noNameConf[0]) {
+                                        Toast.makeText(getApplicationContext(), "The day you have chosen conflict with another class of the same type, please enter another day", Toast.LENGTH_LONG).show();
+                                        clicked[0] = false;
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+            }
+        });
+    }
+
+    public void crossFade(View view, int visibility){
+        int shortAnimationDuration = getResources().getInteger(
+                android.R.integer.config_shortAnimTime);
+
+        view.setAlpha(0f);
+        view.setVisibility(visibility);
+
+        // Animate the content view to 100% opacity, and clear any animation
+        // listener set on the view.
+        view.animate()
+                .alpha(1f)
+                .setDuration(shortAnimationDuration)
+                .setListener(null);
+    }
+    public boolean verifyMaxCap(){
+        maxCap = (EditText) findViewById(R.id.maxCap);
+        String cap = maxCap.getText().toString().trim();
+        try{
+            int max = Integer.parseInt(cap);
+            if(max < 0){
+                maxCap.setError("Entered invalid class capacity");
+                return false;
+            }
+            if(max > 50){
+                maxCap.setError("Class capacity must not exceed 50 members");
+                return false;
+            }
+
+        }
+        catch (NumberFormatException e){
+            maxCap.setError("Entered invalid capacity");
+            return false;
+        }
+
+        return true;
+    }
+    public int timeConv(String time){
+        String[] times = time.split(" ");
+        int hours = Integer.parseInt(times[0].replace(":",""));
+        if(times[1].equals("am") || times[0].startsWith("12")){
+            return hours;
+        }else{
+            return hours+1200;
+        }
+    }
+    public String dayConv(String day){
+        switch (day){
+            case "Mon":
+                return "Monday";
+            case "Tue":
+                return "Tuesday";
+            case "Wed":
+                return "Wednesday";
+            case "Thu":
+                return "Thursday";
+            case "Fri":
+                return "Friday";
+            case "Sat" :
+                return "Saturday";
+            default:
+                return "Sunday";
+        }
     }
 }

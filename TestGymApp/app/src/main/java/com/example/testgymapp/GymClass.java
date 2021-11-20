@@ -18,7 +18,7 @@ public class GymClass {
         this.className = className;
         this.description = description;
     }
-    public GymClass(String className, String description, String startTime, String endTime, int maximumCapacity, String day, String difficulty, User instructor){
+    public GymClass(String className, String description, String startTime, String endTime, int maximumCapacity, String day, String difficulty, User instructor, int numberOfUsers){
             this.className = className;
             this.description = description;
             this.startTime = startTime;
@@ -28,6 +28,18 @@ public class GymClass {
             this.difficulty = difficulty;
             this.instructor = instructor;
             members = new ArrayList<User>();
+            this.numberOfUsers = numberOfUsers;
+    }
+    public GymClass(String className, String description, String startTime, String endTime, int maximumCapacity, String day, String difficulty, User instructor){
+        this.className = className;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.maximumCapacity = maximumCapacity;
+        this.day = day;
+        this.difficulty = difficulty;
+        this.instructor = instructor;
+        members = new ArrayList<User>();
     }
 
     public String getClassName() {
@@ -102,5 +114,13 @@ public class GymClass {
             return true;
         }
         return false;
+    }
+
+    public int getNumberOfUsers() {
+        return numberOfUsers;
+    }
+
+    public void setNumberOfUsers(int numberOfUsers) {
+        this.numberOfUsers = numberOfUsers;
     }
 }

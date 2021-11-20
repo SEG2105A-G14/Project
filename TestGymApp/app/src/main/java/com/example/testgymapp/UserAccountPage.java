@@ -40,8 +40,8 @@ public class UserAccountPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 final ArrayList<String> members = new ArrayList<>();
                 final ArrayList<String> instructors = new ArrayList<>();
-                final ArrayAdapter membersAdapter = new ArrayAdapter<String>(UserAccountPage.this, R.layout.gym_classs_item, members);
-                final ArrayAdapter instructorAdapter = new ArrayAdapter<String>(UserAccountPage.this, R.layout.gym_classs_item, instructors);
+                final ArrayAdapter membersAdapter = new ArrayAdapter<String>(UserAccountPage.this, R.layout.gym_class_item, members);
+                final ArrayAdapter instructorAdapter = new ArrayAdapter<String>(UserAccountPage.this, R.layout.gym_class_item, instructors);
                 membersList.setAdapter(membersAdapter);
                 instructorsList.setAdapter(instructorAdapter);
 

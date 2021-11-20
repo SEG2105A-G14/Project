@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class GymMemberPage extends AppCompatActivity {
+
     private static int SPLASH_TIME_OUT = 2000;
     private TextView welcomeText;
     private TextView noClassesMessage;
@@ -90,6 +91,7 @@ public class GymMemberPage extends AppCompatActivity {
 
         String userName = getIntent().getStringExtra("name");
         String role = getIntent().getStringExtra("role");
+
         String message = "Welcome "+userName+"! You are logged in as an "+role;
 
         welcomeText.setText(message);

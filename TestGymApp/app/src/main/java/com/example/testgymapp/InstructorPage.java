@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.os.Handler;
 import android.os.TestLooperManager;
 import android.text.Editable;
@@ -113,6 +114,7 @@ public class InstructorPage extends AppCompatActivity {
 
         String userName = getIntent().getStringExtra("name");
         String role = getIntent().getStringExtra("role");
+
         String message = "Welcome "+userName+"! You are logged in as an "+role;
 
 //        className = new ArrayList<>();

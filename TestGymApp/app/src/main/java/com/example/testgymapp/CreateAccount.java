@@ -84,6 +84,9 @@ public class CreateAccount extends AppCompatActivity {
                                       }
 
                                     }
+                                    else {
+                                        Toast.makeText(CreateAccount.this, "Email already existing ! Try a different one", Toast.LENGTH_LONG).show();
+                                    }
                                 }
                             });
 
@@ -94,7 +97,12 @@ public class CreateAccount extends AppCompatActivity {
 
     public boolean verifyEmail(){
         email1 = (EditText) findViewById(R.id.userEmail);
-        return Patterns.EMAIL_ADDRESS.matcher(email1.getText()).matches();
+        String t1 = email1.getText().toString().trim().toLowerCase();
+        boolean valid = Patterns.EMAIL_ADDRESS.matcher(email1.getText()).matches();
+        if (!valid){
+            email1.setError("Invalid email");
+        }
+        return valid;
     }
 
     public boolean confirmEmail(){
@@ -102,7 +110,8 @@ public class CreateAccount extends AppCompatActivity {
         String t1 = email1.getText().toString().trim().toLowerCase();
         String t2 = email2.getText().toString().trim().toLowerCase();
         if(!t2.equals(t1)){
-            email2.setError("Email entered does not match the previous entered email");
+            email2.setError("Email entries do not match");
+
             return false;
         }  return true;
     }
@@ -214,4 +223,5 @@ public class CreateAccount extends AppCompatActivity {
         startActivity(welcomePageIntent);
         finish();
     }
+ 
 }

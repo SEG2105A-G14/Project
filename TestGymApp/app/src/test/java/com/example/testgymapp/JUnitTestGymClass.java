@@ -25,17 +25,22 @@ public class JUnitTestGymClass {
         // Initialize a more complex gym class for running
         User instructor = new User("Bob", "bob@gmail.com");
         GymClass running = new GymClass("Running", "Run and improve your stamina",
-                "1:30pm", 3, "Monday", "Medium", instructor);
+                "1:30pm", "2:30pm", 3, "Monday", "Medium", instructor);
 
         // Verify the information for the gym class of running matches.
-        assertEquals(running.getClassTime(), "1:30pm");
+        assertEquals(running.getStartTime(), "1:30pm");
+        assertEquals(running.getEndTime(), "2:30pm");
         assertEquals(running.getMaximumCapacity(), 3);
         assertEquals(running.getDay(), "Monday");
         assertEquals(running.getInstructor().getName(), instructor.getName());
+        assertEquals(running.getDifficulty(), "Medium");
+        assertEquals(running.getNumberOfUsers(), 0);
 
         // Verify the setters classes are functional for the complex gym class.
-        running.setClassTime("2:00pm");
-        assertEquals(running.getClassTime(), "2:00pm");
+        running.setStartTime("1:00pm");
+        running.setEndTime("2:00pm");
+        assertEquals(running.getStartTime(), "1:00pm");
+        assertEquals(running.getEndTime(), "2:00pm");
         running.setMaximumCapacity(2);
         assertEquals(running.getMaximumCapacity(), 2);
         running.setDay("Friday");
@@ -43,6 +48,8 @@ public class JUnitTestGymClass {
         User newInstructor = new User("Johnathan", "johnathan@outlook.com");
         running.setInstructor(newInstructor);
         assertEquals(running.getInstructor().getEmail(), newInstructor.getEmail());
+        running.setDifficulty("Hard");
+        assertEquals(running.getDifficulty(), "Hard");
 
         // Initialize user who will join the gym class.
         User user1 = new User("Joe", "joe@yahoo.com");
@@ -63,6 +70,9 @@ public class JUnitTestGymClass {
         // Use the getMembers() function and check to see if Daniel's name is there.
         assertEquals(running.getMembers().get(1).getName(), "Daniel");
 
+        // Change the numberOfUsers and verify the function works.
+        running.setNumberOfUsers(10);
+        assertEquals(running.getNumberOfUsers(), 10);
 
         // Verify that the empty GymClass class is functional.
         GymClass emptyGC = new GymClass();

@@ -19,16 +19,16 @@ public class GymClass {
         this.description = description;
     }
     public GymClass(String className, String description, String startTime, String endTime, int maximumCapacity, String day, String difficulty, User instructor, int numberOfUsers){
-            this.className = className;
-            this.description = description;
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.maximumCapacity = maximumCapacity;
-            this.day = day;
-            this.difficulty = difficulty;
-            this.instructor = instructor;
-            members = new ArrayList<User>();
-            this.numberOfUsers = numberOfUsers;
+        this.className = className;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.maximumCapacity = maximumCapacity;
+        this.day = day;
+        this.difficulty = difficulty;
+        this.instructor = instructor;
+        members = new ArrayList<User>();
+        this.numberOfUsers = numberOfUsers;
     }
     public GymClass(String className, String description, String startTime, String endTime, int maximumCapacity, String day, String difficulty, User instructor){
         this.className = className;
@@ -60,11 +60,11 @@ public class GymClass {
 
     public String getStartTime(){return startTime;}
 
-    public void setStartTime(String time){this.startTime = startTime;}
+    public void setStartTime(String startTime){this.startTime = startTime;}
 
     public String getEndTime(){return endTime;}
 
-    public void setEndTime(String time){this.endTime = endTime;}
+    public void setEndTime(String endTime){this.endTime = endTime;}
 
     public int getMaximumCapacity() {
         return maximumCapacity;

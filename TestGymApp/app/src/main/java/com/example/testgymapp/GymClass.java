@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class GymClass {
     private String className;
     private String description;
-    private String classTime;
+    private String startTime, endTime;
     private int maximumCapacity;
     private String day;
     private String difficulty;
@@ -18,15 +18,28 @@ public class GymClass {
         this.className = className;
         this.description = description;
     }
-    public GymClass(String className, String description, String classTime, int maximumCapacity, String day, String difficulty, User instructor){
+    public GymClass(String className, String description, String startTime, String endTime, int maximumCapacity, String day, String difficulty, User instructor, int numberOfUsers){
             this.className = className;
             this.description = description;
-            this.classTime = classTime;
+            this.startTime = startTime;
+            this.endTime = endTime;
             this.maximumCapacity = maximumCapacity;
             this.day = day;
             this.difficulty = difficulty;
             this.instructor = instructor;
             members = new ArrayList<User>();
+            this.numberOfUsers = numberOfUsers;
+    }
+    public GymClass(String className, String description, String startTime, String endTime, int maximumCapacity, String day, String difficulty, User instructor){
+        this.className = className;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.maximumCapacity = maximumCapacity;
+        this.day = day;
+        this.difficulty = difficulty;
+        this.instructor = instructor;
+        members = new ArrayList<User>();
     }
 
     public String getClassName() {
@@ -45,13 +58,13 @@ public class GymClass {
         this.description = description;
     }
 
-    public String getClassTime() {
-        return classTime;
-    }
+    public String getStartTime(){return startTime;}
 
-    public void setClassTime(String classTime) {
-        this.classTime = classTime;
-    }
+    public void setStartTime(String time){this.startTime = startTime;}
+
+    public String getEndTime(){return endTime;}
+
+    public void setEndTime(String time){this.endTime = endTime;}
 
     public int getMaximumCapacity() {
         return maximumCapacity;
@@ -68,6 +81,10 @@ public class GymClass {
     public void setDay(String day) {
         this.day = day;
     }
+
+    public String getDifficulty(){return difficulty;}
+
+    public void setDifficulty(String diff){this.difficulty = diff;}
 
     public User getInstructor() {
         return instructor;
@@ -97,5 +114,13 @@ public class GymClass {
             return true;
         }
         return false;
+    }
+
+    public int getNumberOfUsers() {
+        return numberOfUsers;
+    }
+
+    public void setNumberOfUsers(int numberOfUsers) {
+        this.numberOfUsers = numberOfUsers;
     }
 }

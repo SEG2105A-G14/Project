@@ -10,7 +10,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="365dp"
-        android:layout_height="516dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,13 +25,13 @@
             <LinearLayout
                 android:id="@+id/availableClassesLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="520dp"
                 android:orientation="vertical">
 
                 <ListView
                     android:id="@+id/availableClasses"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/round" />
             </LinearLayout>
 
@@ -109,13 +109,13 @@
 
                     <TextView
                         android:id="@+id/classTime"
-                        android:layout_width="116dp"
-                        android:layout_height="29dp"
+                        android:layout_width="134dp"
+                        android:layout_height="30dp"
                         android:layout_marginStart="44dp"
                         android:layout_marginTop="16dp"
                         android:text="TextView"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.267"
+                        app:layout_constraintHorizontal_bias="0.394"
                         app:layout_constraintStart_toEndOf="@+id/textView15"
                         app:layout_constraintTop_toBottomOf="@+id/dayLabel" />
 
@@ -145,11 +145,14 @@
                         android:id="@+id/confirmEnroll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="80dp"
+                        android:layout_marginBottom="56dp"
                         android:text="Enroll"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.497"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/maxCapLabel" />
+                        app:layout_constraintTop_toBottomOf="@+id/difficultyLabel"
+                        app:layout_constraintVertical_bias="1.0" />
 
                     <TextView
                         android:id="@+id/maxCapLabel"
@@ -195,6 +198,28 @@
                         app:layout_constraintStart_toEndOf="@+id/maxCapLabel"
                         app:layout_constraintTop_toBottomOf="@+id/numberOfUsersLabel" />
 
+                    <TextView
+                        android:id="@+id/difficultyLabel"
+                        android:layout_width="118dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:text="Difficulty"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/maxCapLabel" />
+
+                    <TextView
+                        android:id="@+id/difficultyText1"
+                        android:layout_width="117dp"
+                        android:layout_height="34dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="40dp"
+                        android:text="TextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/difficultyLabel"
+                        app:layout_constraintTop_toBottomOf="@+id/maxCapLabel" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -203,12 +228,12 @@
     <EditText
         android:id="@+id/classSearchField"
         android:layout_width="264dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="28dp"
         android:background="@drawable/round_search_field"
         android:ems="10"
-        android:hint="Enter the class day"
+        android:hint="Enter the class day "
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toStartOf="@+id/scheduleClassSearchButton"

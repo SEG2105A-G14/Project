@@ -87,7 +87,6 @@ public class GymClasses extends AppCompatActivity {
 
         myRef = FirebaseDatabase.getInstance().getReference().child("gymClassType");
         mRef = FirebaseDatabase.getInstance().getReference().child("users");
-
         final String[] actualName = new String[1];
         final String[] desc = new String[1];
         String role = getIntent().getStringExtra("role");

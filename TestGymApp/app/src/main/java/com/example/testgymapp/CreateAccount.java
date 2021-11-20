@@ -84,9 +84,6 @@ public class CreateAccount extends AppCompatActivity {
                                       }
 
                                     }
-                                    else {
-                                        Toast.makeText(CreateAccount.this, "Email already existing ! Try a different one", Toast.LENGTH_LONG).show();
-                                    }
                                 }
                             });
 
@@ -110,8 +107,7 @@ public class CreateAccount extends AppCompatActivity {
         String t1 = email1.getText().toString().trim().toLowerCase();
         String t2 = email2.getText().toString().trim().toLowerCase();
         if(!t2.equals(t1)){
-            email2.setError("Email entries do not match");
-
+            email2.setError("Email entered does not match the previous entered email");
             return false;
         }  return true;
     }
@@ -223,5 +219,4 @@ public class CreateAccount extends AppCompatActivity {
         startActivity(welcomePageIntent);
         finish();
     }
- 
 }

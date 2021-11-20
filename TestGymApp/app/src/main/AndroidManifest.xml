@@ -9,19 +9,28 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TestGymApp">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".ScheduledClassesInstructor"
+            android:exported="false" />
         <activity
             android:name=".UserAccountPage"
             android:exported="true" />
         <activity
             android:name=".GymClasses"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ScheduledClass"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".AdminPage"
             android:exported="true" />
         <activity
             android:name=".InstructorPage"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".GymMemberPage"
             android:exported="true" />

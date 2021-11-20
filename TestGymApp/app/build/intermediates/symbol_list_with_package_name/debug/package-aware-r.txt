@@ -57,7 +57,10 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array days
+array difficulty
 array gym_roles
+array times
 attr SharedValue
 attr SharedValueId
 attr actionBarDivider
@@ -1833,6 +1836,7 @@ drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable gymimage
 drawable ic_baseline_email_24
+drawable ic_baseline_search_24
 drawable ic_baseline_vpn_key_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
@@ -1961,6 +1965,7 @@ id adjust_width
 id alertTitle
 id aligned
 id all
+id allClassLst
 id allStates
 id always
 id animateToEnd
@@ -1974,6 +1979,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id backButton
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -1990,6 +1996,7 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id buttonLayout
 id buttonPanel
 id cache_measures
 id cancel_button
@@ -2008,9 +2015,15 @@ id chip3
 id chip_group
 id chronometer
 id circle_center
+id classDay
+id classDesc
 id classDescriptionField
+id classDifficulty
 id classList
+id classLst
+id className
 id classNameField
+id classSearchView
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -2030,6 +2043,7 @@ id coordinator
 id cos
 id counterclockwise
 id createAccountText
+id createClass
 id createClassButton
 id createClassOverlay
 id currentState
@@ -2058,6 +2072,7 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
+id doneButton
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -2080,9 +2095,13 @@ id elastic
 id emailSecondEntry
 id emailText
 id end
+id endClassCreate
+id endClassEdit
+id endTime
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id exit
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2125,6 +2144,8 @@ id immediateStop
 id included
 id info
 id instructorAccountsTitle
+id instructorClass
+id instuctorName
 id invisible
 id inward
 id italic
@@ -2171,6 +2192,7 @@ id material_timepicker_mode_button
 id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
+id maxCap
 id memList
 id memberAccountsTitle
 id message
@@ -2207,6 +2229,9 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id myClasses
+id nameCLass
+id nameOfClass
 id navigation_bar_item_icon_view
 id navigation_bar_item_labels_group
 id navigation_bar_item_large_label_view
@@ -2269,12 +2294,17 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
+id searchButton
+id searchClass
+id searchInstructor
+id searchLayout
 id search_badge
 id search_bar
 id search_button
 id search_close_btn
 id search_edit_frame
 id search_go_btn
+id search_item
 id search_mag_icon
 id search_plate
 id search_src_text
@@ -2314,6 +2344,7 @@ id src_over
 id standard
 id start
 id startHorizontal
+id startTime
 id startToEnd
 id startVertical
 id staticLayout
@@ -2388,6 +2419,9 @@ id useLogo
 id userEmail
 id usernameField
 id vertical_only
+id viewAllClasses
+id viewClassButtons
+id viewMyClasses
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner
@@ -2480,8 +2514,10 @@ layout activity_admin_page
 layout activity_create_account
 layout activity_gym_classes
 layout activity_gym_member_page
+layout activity_instructor_classes
 layout activity_instructor_page
 layout activity_main
+layout activity_search_list
 layout activity_user_account_page
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
@@ -2570,6 +2606,7 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+menu search_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description

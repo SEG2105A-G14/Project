@@ -32,119 +32,79 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
     private static final String TAG = "MyActivity";
-    EditText email;
-    EditText password;
-    Button loginButton;
+    private EditText email;
+    private EditText password;
+    private Button loginButton;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mdb;
+    private FirebaseUser mUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase mdb = FirebaseDatabase.getInstance();
 
-        email = (EditText) findViewById(R.id.emailText);
-        password = (EditText) findViewById(R.id.loginPassword);
-        loginButton = (Button) findViewById(R.id.loginButton);
+        mAuth = FirebaseAuth.getInstance();
+        mdb = FirebaseDatabase.getInstance();
+        mUser = mAuth.getCurrentUser();
 
-        TextView welcomeMessage =(TextView) findViewById(R.id.textView4);
-        TextView createAccountlabel = (TextView) findViewById(R.id.createAccountText);
-        createAccountlabel.setTextColor(Color.parseColor("#0000FF"));
+        if (mUser!=null){
+            loginUser(mUser);
+        }
+        else {
 
-        email.setTextColor(Color.parseColor("#FFFFFF"));
-        password.setTextColor(Color.parseColor("#FFFFFF"));
+            setContentView(R.layout.activity_main);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                welcomeMessage.setVisibility(View.INVISIBLE);
-            }
-        }, SPLASH_TIME_OUT);
+            email = (EditText) findViewById(R.id.emailText);
+            password = (EditText) findViewById(R.id.loginPassword);
+            loginButton = (Button) findViewById(R.id.loginButton);
 
-        SpannableString content = new SpannableString("Sign up");
-        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
-        createAccountlabel.setText(content);
+            TextView welcomeMessage = (TextView) findViewById(R.id.textView4);
+            TextView createAccountLabel = (TextView) findViewById(R.id.createAccountText);
 
-        final DatabaseReference[] myRef = new DatabaseReference[1];
+            email.setTextColor(Color.parseColor("#FFFFFF"));
+            password.setTextColor(Color.parseColor("#FFFFFF"));
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean usernameEntered = verifyUsername();
-                boolean passwordVerified = verifyPassword();
-                final String[] tempName = new String[1];
-                if (usernameEntered&&passwordVerified) {
-                    mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(
-                            MainActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()){
-                                        FirebaseUser mUser = mAuth.getCurrentUser();
-                                        final String[] role = new String[1];
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    welcomeMessage.setVisibility(View.INVISIBLE);
+                }
+            }, SPLASH_TIME_OUT);
 
-                                        if (mUser!=null){
-                                            String uid = mUser.getUid();
-                                            myRef[0] = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    boolean usernameEntered = verifyUsername();
+                    boolean passwordVerified = verifyPassword();
 
-                                            myRef[0].addValueEventListener(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    if (snapshot.exists()){
-                                                        User user =  snapshot.getValue(User.class);
-                                                        assert user != null;
-
-                                                        role[0] = user.getRole();
-                                                        tempName[0] = user.getName();
-
-                                                        if (role[0].equals("Member")){
-                                                            Intent welcomeIntent = new Intent(MainActivity.this, GymMemberPage.class);
-                                                            welcomeIntent.putExtra("name", tempName[0]);
-                                                            welcomeIntent.putExtra("role", role[0]);
-                                                            startActivity(welcomeIntent);
-                                                        }
-                                                        else if (role[0].equals("Instructor")){
-                                                            Intent welcomeIntent = new Intent(MainActivity.this, InstructorPage.class);
-                                                            welcomeIntent.putExtra("name", tempName[0]);
-                                                            welcomeIntent.putExtra("role", role[0]);
-                                                            startActivity(welcomeIntent);
-                                                        }
-                                                        else {
-                                                            Intent welcomeIntent = new Intent(MainActivity.this, AdminPage.class);
-                                                            welcomeIntent.putExtra("name", tempName[0]);
-                                                            welcomeIntent.putExtra("role", role[0]);
-                                                            startActivity(welcomeIntent);
-                                                        }
-                                                    }else {
-                                                        mAuth.signOut();
-                                                        Toast.makeText(MainActivity.this, "This account does not exit", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                }
-
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                                }
-                                            });
+                    if (usernameEntered && passwordVerified) {
+                        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(
+                                MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser mUser = mAuth.getCurrentUser();
+                                            if (mUser != null) {
+                                                loginUser(mUser);
+                                            }
+                                        } else {
+                                            Toast.makeText(MainActivity.this, "Username/Password invalid", Toast.LENGTH_SHORT).show();
                                         }
                                     }
-                                    else {
-                                        Toast.makeText(MainActivity.this, "Username/Password invalid", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-
+                                });
+                    }
                 }
-            }
-        });
+            });
 
-        createAccountlabel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickCreate();
-            }
-        });
+            createAccountLabel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickCreate();
+                }
+            });
+        }
     }
 
     public void onClickCreate (){
@@ -168,5 +128,65 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+    private void loginUser(FirebaseUser myUser){
+
+        String uid = myUser.getUid();
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    User user =  snapshot.getValue(User.class);
+                    assert user != null;
+
+                    String role;
+                    String tempName;
+
+                    role = user.getRole();
+                    tempName = user.getName();
+                    Log.d("role", role);
+                    if (role.equals("Member")){
+                        launchMemberPage(tempName, role);
+                    }
+                    else if (role.equals("Instructor")){
+                        launchInstructorPage(tempName, role);
+                    }
+                    else {
+                        launchAdminPage(tempName, role);
+                    }
+                }else {
+                    mAuth.signOut();
+                    Toast.makeText(MainActivity.this, "This account does not exist", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void launchAdminPage(String name, String role){
+        Intent welcomeIntent = new Intent(MainActivity.this, AdminPage.class);
+        welcomeIntent.putExtra("name", name);
+        welcomeIntent.putExtra("role", role);
+        startActivity(welcomeIntent);
+        finish();
+    }
+    private void launchInstructorPage(String name, String role){
+        Intent welcomeIntent = new Intent(MainActivity.this, InstructorPage.class);
+        welcomeIntent.putExtra("name", name);
+        welcomeIntent.putExtra("role", role);
+        startActivity(welcomeIntent);
+        finish();
+    }
+    private void launchMemberPage(String name, String role){
+        Intent welcomeIntent = new Intent(MainActivity.this, GymMemberPage.class);
+        welcomeIntent.putExtra("name", name);
+        welcomeIntent.putExtra("role", role);
+        startActivity(welcomeIntent);
+        finish();
     }
 }

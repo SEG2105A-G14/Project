@@ -92,6 +92,7 @@ public class GymClasses extends AppCompatActivity {
         String role = getIntent().getStringExtra("role");
         String userName = getIntent().getStringExtra("name");
         final String[] tempValue = new String[1];
+        final String[] clashingInstructor = new String[1];
 
         day = findViewById(R.id.classDay);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.days, android.R.layout.simple_spinner_item);
@@ -234,6 +235,7 @@ public class GymClasses extends AppCompatActivity {
                                                  if (days.equals(classes.child("day").getValue().toString())) {
                                                      if (actualName[0].equals(classes.child("className").getValue().toString())) {
                                                          noNameConf[0] = false;
+                                                         clashingInstructor[0] = classes.child("instructor").child("name").getValue().toString();
                                                          break;
                                                      }
                                                  }
@@ -258,7 +260,8 @@ public class GymClasses extends AppCompatActivity {
                                              back.putExtra("role", role);
                                              startActivity(back);
                                          } else if (!noNameConf[0]) {
-                                             Toast.makeText(getApplicationContext(), "The day you have chosen conflict with another class of the same type, please enter another day", Toast.LENGTH_LONG).show();
+                                             Toast.makeText(getApplicationContext(), "The day you have chosen conflicts with another class of the same type" +
+                                                     "scheduled by instructor "+clashingInstructor[0]+", please enter another day", Toast.LENGTH_LONG).show();
                                              clicked[0] = false;
                                          }
                                      }

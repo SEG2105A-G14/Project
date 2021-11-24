@@ -41,7 +41,7 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         mdb = FirebaseDatabase.getInstance();
-        DatabaseReference ref = mdb.getReference();
+        ref = mdb.getReference();
 
         setContentView(R.layout.activity_create_account);
 
@@ -53,7 +53,7 @@ public class CreateAccount extends AppCompatActivity {
         signUpButton = (Button) findViewById(R.id.signUpButton);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gym_roles
-        , android.R.layout.simple_spinner_item);
+                , android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
         gymRoles.setAdapter(adapter);
@@ -76,13 +76,16 @@ public class CreateAccount extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                      if (gymRoles.getSelectedItem().toString().equals("Gym Member")){
-                                          launchMemberPage();
-                                      }
-                                      else{
-                                          launchInstructorPage();
-                                      }
+                                        if (gymRoles.getSelectedItem().toString().equals("Gym Member")){
+                                            launchMemberPage();
+                                        }
+                                        else{
+                                            launchInstructorPage();
+                                        }
 
+                                    }
+                                    else {
+                                        Toast.makeText(CreateAccount.this, "Email already existing ! Try a different one", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -107,7 +110,8 @@ public class CreateAccount extends AppCompatActivity {
         String t1 = email1.getText().toString().trim().toLowerCase();
         String t2 = email2.getText().toString().trim().toLowerCase();
         if(!t2.equals(t1)){
-            email2.setError("Email entered does not match the previous entered email");
+            email2.setError("Email entries do not match");
+
             return false;
         }  return true;
     }
@@ -127,11 +131,11 @@ public class CreateAccount extends AppCompatActivity {
         }
         int letters=0;
         for (int i=0; i<text.length(); i++){
-              if (!Character.isLetterOrDigit(text.charAt(i))){
-                  username.setError("Username must contain only letters and digits");
-                  return false;
-              }
-              if (Character.isLetter(text.charAt(i))) letters++;
+            if (!Character.isLetterOrDigit(text.charAt(i))){
+                username.setError("Username must contain only letters and digits");
+                return false;
+            }
+            if (Character.isLetter(text.charAt(i))) letters++;
         }
         if (letters<0){
             username.setError("Username must contain at least 1 letter");
@@ -190,6 +194,10 @@ public class CreateAccount extends AppCompatActivity {
         EditText password2 = findViewById(R.id.passwordSecondEntry);
         String t1 = password1.getText().toString();
         String t2 = password2.getText().toString();
+
+        if (!t1.equals(t2)){
+            password2.setError("Password entries do not match");
+        }
         return t1.equals(t2);
     }
     public void launchMemberPage(){
@@ -219,4 +227,5 @@ public class CreateAccount extends AppCompatActivity {
         startActivity(welcomePageIntent);
         finish();
     }
+
 }

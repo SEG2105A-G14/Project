@@ -162,7 +162,7 @@ public class CreateAccount extends AppCompatActivity {
         }
 
         for (int i=0; i<passwordLength; i++){
-            if(Character.isLetter(text.charAt(i))){
+            if (Character.isLetter(text.charAt(i))){
                 if (Character.isUpperCase(text.charAt(i))) upperCase++;
             }
             else if (Character.isDigit(text.charAt(i))){
@@ -172,20 +172,21 @@ public class CreateAccount extends AppCompatActivity {
                 symbols++;
             }
         }
-        if (upperCase<0&&numbers<0){
+        Log.d("GGG", String.valueOf(upperCase));
+        if (upperCase<=0&&numbers<=0){
             password1.setError("Password must contain at least 1 upper case letter and 1 number");
             return false;
         }
-        else if (upperCase<0){
+        else if (upperCase<=0){
             password1.setError("Password must contain at least 1 letter");
             return false;
         }
-        else  if (numbers<0){
+        else  if (numbers<=0){
             password1.setError("Password must contain at least 1 digit");
             return false;
         }
 
-        return upperCase>0 && numbers>0;
+        return true;
     }
 
     //This is to check that second password entry is equal to the first one

@@ -51,7 +51,7 @@ public class ScheduledClassesInstructor extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference();
         classInfoLayout = findViewById(R.id.classInfo);
-        availableList = findViewById(R.id.availableClasses);
+        availableList = findViewById(R.id.availableClassesInstr);
         availableClassesLayout = findViewById(R.id.availableClassesLayout);
         searchField = findViewById(R.id.classSearchField);
         searchButton = findViewById(R.id.scheduleClassSearchButton);
@@ -67,7 +67,6 @@ public class ScheduledClassesInstructor extends AppCompatActivity {
         classRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("classes", snapshot.toString());
                 classID[0]= setClickedItem(classType, snapshot);
             }
 
@@ -99,7 +98,6 @@ public class ScheduledClassesInstructor extends AppCompatActivity {
                 classRef.orderByChild("instructor/name").startAt(s.toString()).endAt(s.toString()+"\uf8ff").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Log.d("Test-search", snapshot.toString());
                         if (snapshot.exists()){
                             classID[0] = setClickedItem(classType, snapshot);
                         }
@@ -147,7 +145,6 @@ public class ScheduledClassesInstructor extends AppCompatActivity {
         for (DataSnapshot classes:snapshot.getChildren()){
             classID.add(classes.getKey().toString());
             classNames.add(classType);
-            Log.d("TAG", classes.toString());
             String startTime = classes.child("startTime").getValue().toString();
             String endTime = classes.child("endTime").getValue().toString();
             String day = classes.child("day").getValue().toString();
@@ -155,10 +152,7 @@ public class ScheduledClassesInstructor extends AppCompatActivity {
 
             instructorNames.add(instructorName);
 
-            //String startTimeString = startTime>=12?Long.toString((12+startTime)%12)+" PM":Long.toString((12+startTime)%12)+" AM";
-            //String endTimeString = endTime>=12?Long.toString((12+endTime)%12)+" PM":Long.toString((12+endTime)%12)+" AM";
-
-            String period = day.substring(0, 3)+". "+startTime+" - "+endTime;
+            String period = day.substring(0, 1).toUpperCase()+day.substring(1, 3)+". "+startTime+" - "+endTime;
             datesAndTimes.add(period);
         }
         CustomClassList customClassList = new CustomClassList(ScheduledClassesInstructor.this, classNames, datesAndTimes, instructorNames);

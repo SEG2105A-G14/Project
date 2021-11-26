@@ -3,6 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/account_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/activity_admin_page.xml" value="0.29153605015673983" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/activity_gym_classes.xml" value="0.264" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/activity_gym_member_page.xml" value="0.21041666666666667" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/activity_instructor_page.xml" value="0.264" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/activity_regirstered_users.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/activity_scheduled_class.xml" value="0.26495726495726496" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/activity_scheduled_classes_instructor.xml" value="0.1296875" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/activity_search_list.xml" value="0.264" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/activity_user_account_page.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/layout/registered_classes_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/ralph/Desktop/New folder/Project/TestGymApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/ralph/Desktop/TestGymApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Users/ralph/Desktop/TestGymApp/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.4" />
         <entry key="..\:/Users/ralph/Desktop/TestGymApp/app/src/main/res/layout-w936dp/activity_login.xml" value="0.190625" />

@@ -172,7 +172,6 @@ public class CreateAccount extends AppCompatActivity {
                 symbols++;
             }
         }
-        Log.d("GGG", String.valueOf(upperCase));
         if (upperCase<=0&&numbers<=0){
             password1.setError("Password must contain at least 1 upper case letter and 1 number");
             return false;

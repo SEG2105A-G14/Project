@@ -46,6 +46,7 @@ public class InstructorPage extends AppCompatActivity {
     private FirebaseUser mUser;
     private DatabaseReference mRef;
     private TextView welcomeText;
+    private TextView noClassesMessage;
     private EditText classNameField;
     private ListView classList;
     private ArrayList<String> className;
@@ -62,6 +63,9 @@ public class InstructorPage extends AppCompatActivity {
     private ScrollView instructorClass;
     private String id;
     private DatabaseReference mRef2;
+    private ScrollView registeredClassesView;
+    private Button viewUsers;
+    static  ArrayList<String> usersList = new ArrayList<>();
 
 
     @Override
@@ -70,6 +74,7 @@ public class InstructorPage extends AppCompatActivity {
         setContentView(R.layout.activity_instructor_page);
 
         welcomeText = findViewById(R.id.welcomeMessageInstructor);
+        noClassesMessage = findViewById(R.id.noClassesMessageInstructor);
 
         classNameField = findViewById(R.id.classNameField);
         classList = findViewById(R.id.classList);
@@ -84,6 +89,8 @@ public class InstructorPage extends AppCompatActivity {
         instructorClass = findViewById(R.id.instructorClass);
         endClassEdit = findViewById(R.id.endClassEdit);
         deleteClassButton = findViewById(R.id.deleteClassButton);
+        registeredClassesView = findViewById(R.id.registeredClassesInst);
+        viewUsers = findViewById(R.id.seeUsersButton);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -209,27 +216,32 @@ public class InstructorPage extends AppCompatActivity {
         mRef.child(id).child("gymClasses").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                ArrayList<String> classNames = new ArrayList<>();
-                ArrayList<String> instructorNames = new ArrayList<>();
-                ArrayList<String> datesAndTimes = new ArrayList<>();
-
-                CustomClassList customClassList = new CustomClassList(InstructorPage.this, classNames, datesAndTimes, instructorNames);
-                classList.setAdapter(customClassList);
-
-                for(DataSnapshot classes:snapshot.getChildren()){
-                    String className = classes.child("className").getValue().toString();
-                    String day = classes.child("day").getValue().toString();
-                    String startTime = classes.child("startTime").getValue().toString();
-                    String endTime = classes.child("endTime").getValue().toString();
-                    String period = day.substring(0, 3) + ". " + startTime + " - " + endTime;
-
-                    classNames.add(className);
-                    datesAndTimes.add(period);
-                    instructorNames.add(userName);
+                if (!snapshot.exists()){
+                    noClassesMessage.setVisibility(View.VISIBLE);
+                    registeredClassesView.setVisibility(View.GONE);
                 }
+                else {
+                    ArrayList<String> classNames = new ArrayList<>();
+                    ArrayList<String> instructorNames = new ArrayList<>();
+                    ArrayList<String> datesAndTimes = new ArrayList<>();
 
-                customClassList.notifyDataSetChanged();
+                    CustomClassList customClassList = new CustomClassList(InstructorPage.this, classNames, datesAndTimes, instructorNames);
+                    classList.setAdapter(customClassList);
+
+                    for (DataSnapshot classes : snapshot.getChildren()) {
+                        String className = classes.child("className").getValue().toString();
+                        String day = classes.child("day").getValue().toString();
+                        String startTime = classes.child("startTime").getValue().toString();
+                        String endTime = classes.child("endTime").getValue().toString();
+                        String period = day.substring(0, 1).toUpperCase() +day.substring(1, 3) + ". " + startTime + " - " + endTime;
+
+                        classNames.add(className);
+                        datesAndTimes.add(period);
+                        instructorNames.add(userName);
+                    }
+
+                    customClassList.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -249,7 +261,6 @@ public class InstructorPage extends AppCompatActivity {
                 String[] values = new String[2];
                 values[0] = listClassName.getText().toString();
                 values[1] = dayConv(dayAndTime.getText().toString().split("\\.")[0]).toLowerCase();
-                Log.d("STR", values[1]);
 
                 mRef.child(id).child("gymClasses").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
@@ -257,7 +268,7 @@ public class InstructorPage extends AppCompatActivity {
                         if(task.isSuccessful()){
                             for (DataSnapshot classID: task.getResult().getChildren()){
                                 if(values[0].equals(classID.child("className").getValue().toString().toLowerCase()) && values[1].equals(classID.child("day").getValue().toString().toLowerCase())){
-                                    Log.d("Valid", "True");
+
                                     nameValue[0] = values[0];
                                     String days = classID.child("day").getValue().toString();
                                     String start = classID.child("startTime").getValue().toString();
@@ -265,6 +276,7 @@ public class InstructorPage extends AppCompatActivity {
                                     String diff = classID.child("difficulty").getValue().toString();
                                     String maxCapacity = classID.child("maximumCapacity").getValue().toString();
                                     dbName[0]= nameValue[0] + "_" + userName + "_" + days + "_" + start + "_" + end;
+                                    days = days.substring(0, 1).toUpperCase() + days.substring(1);
 
                                     ArrayAdapter daySpinner = (ArrayAdapter) day.getAdapter();
                                     int spinnerPos = daySpinner.getPosition(days);
@@ -281,6 +293,12 @@ public class InstructorPage extends AppCompatActivity {
                                     ArrayAdapter diffSpinner = (ArrayAdapter) difficulty.getAdapter();
                                     spinnerPos = diffSpinner.getPosition(diff);
                                     difficulty.setSelection(spinnerPos);
+
+                                    usersList = new ArrayList<>();
+                                    for (DataSnapshot dataSnapshot : classID.child("members").getChildren()){
+                                        usersList.add(dataSnapshot.getValue().toString());
+
+                                    }
 
                                     maxCap.setText(maxCapacity);
 
@@ -330,12 +348,12 @@ public class InstructorPage extends AppCompatActivity {
 
                             String name = snapshot.child("users").child(id).child("name").getValue().toString();
                             String email = snapshot.child("users").child(id).child("email").getValue().toString();
-                            Instructor tmp = new Instructor(name, email);
+                            Instructor tmp = new Instructor(name, email, id);
                             if (s1 >= e1) {
                                 Toast.makeText(getApplicationContext(), "You have entered an invalid time frame, please select a valid time frame", Toast.LENGTH_LONG).show();
                                 return;
                             }
-                            Log.d("AAAAA", nameValue[0]);
+
                             myRef2.child("gymClass").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -362,23 +380,58 @@ public class InstructorPage extends AppCompatActivity {
                                         String classID = nameValue[0] + "_" + name + "_" + days + "_" + start + "_" + end;
 
                                         DatabaseReference gRef = FirebaseDatabase.getInstance().getReference().child("gymClass");
-                                        gRef.child(nameValue[0]).child(dbName[0]).removeValue();
-                                        mRef.child(id).child("gymClasses").child(dbName[0]).removeValue();
+                                        DatabaseReference gRef2 = FirebaseDatabase.getInstance().getReference().child("gymClass");
 
-                                        GymClass gymClass = new GymClass(nameValue[0], d, start, end, cap, days, diff, tmp);
+                                        ArrayList<String> ids = new ArrayList<>();
+                                        ArrayList<String> names = new ArrayList<>();
 
-                                        myRef2.child("gymClass").child(nameValue[0]).child(classID).setValue(gymClass);
-                                        mRef.child(id).child("gymClasses").child(classID).setValue(gymClass);
+                                        gRef2.child(nameValue[0]).child(dbName[0]).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                                        clicked[0] = false;
+                                                for (DataSnapshot ds : snapshot.child("members").getChildren()){
+                                                    ids.add(ds.getKey());
+                                                    names.add(ds.getValue().toString());
+                                                }
 
-                                        classList.setVisibility(View.VISIBLE);
-                                        instructorClass.setVisibility(View.GONE);
+                                                gRef.child(nameValue[0]).child(dbName[0]).removeValue();
+                                                mRef.child(id).child("gymClasses").child(dbName[0]).removeValue();
 
-                                        Intent classes = new Intent(InstructorPage.this, InstructorPage.class);
-                                        classes.putExtra("name", userName);
-                                        classes.putExtra("role", role);
-                                        startActivity(classes);
+                                                GymClass gymClass = new GymClass(nameValue[0], d, start, end, cap, days, diff, tmp);
+
+                                                myRef2.child("gymClass").child(nameValue[0]).child(classID).setValue(gymClass);
+                                                for (int i=0; i<ids.size(); i++){
+                                                    String tempId= ids.get(i);
+                                                    String tempNames = names.get(i);
+                                                    myRef2.child("gymClass").child(nameValue[0]).child(classID).child(tempId).setValue(tempNames);
+                                                }
+
+                                                mRef.child(id).child("gymClasses").child(classID).setValue(gymClass);
+                                                for (int i=0; i<ids.size(); i++){
+                                                    String tempId= ids.get(i);
+                                                    String tempNames = names.get(i);
+                                                    mRef.child("gymClass").child(nameValue[0]).child(classID).child(tempId).setValue(tempNames);
+                                                }
+
+                                                clicked[0] = false;
+
+                                                classList.setVisibility(View.VISIBLE);
+                                                instructorClass.setVisibility(View.GONE);
+
+                                                Intent classes = new Intent(InstructorPage.this, InstructorPage.class);
+                                                classes.putExtra("name", userName);
+                                                classes.putExtra("role", role);
+                                                startActivity(classes);
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+
+
 
                                     }
 
@@ -405,6 +458,16 @@ public class InstructorPage extends AppCompatActivity {
                 });
 
 
+            }
+        });
+
+        viewUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InstructorPage.this, RegirsteredUsers.class);
+                intent.putExtra("role", role);
+                intent.putExtra("name", userName);
+                startActivity(intent);
             }
         });
     }

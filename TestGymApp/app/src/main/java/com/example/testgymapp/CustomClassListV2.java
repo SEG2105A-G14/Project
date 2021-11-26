@@ -11,12 +11,12 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-public class CustomClasssListV2 extends ArrayAdapter<String> {
+public class CustomClassListV2 extends ArrayAdapter<String> {
     private final Activity context;
     private final ArrayList<String> className;
     private final ArrayList<String> description;
 
-    public CustomClasssListV2(@NonNull Activity context1, ArrayList<String> className, ArrayList<String> description) {
+    public CustomClassListV2(@NonNull Activity context1, ArrayList<String> className, ArrayList<String> description) {
         super(context1, R.layout.gym_class_item, className);
         this.context = context1;
         this.className = className;

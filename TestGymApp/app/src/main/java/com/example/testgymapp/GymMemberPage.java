@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -185,7 +186,6 @@ public class GymMemberPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()){
-                    Log.d("Confirm", "No exist");
                     noClassesMessage.setVisibility(View.VISIBLE);
                     registeredClassesView.setVisibility(View.GONE);
                 }
@@ -213,7 +213,7 @@ public class GymMemberPage extends AppCompatActivity {
                             classNames.add(className);
                             instructorNames.add(instructorName);
 
-                            String period = day.substring(0, 3) + ". " + startTime + " - " + endTime;
+                            String period = day.substring(0, 1).toUpperCase() + day.substring(1, 3) + ". " + startTime + " - " + endTime;
                             datesAndTimes.add(period);
                         }
                         CustomClassList customClassList = new CustomClassList(GymMemberPage.this, classNames, datesAndTimes, instructorNames);
@@ -235,19 +235,21 @@ public class GymMemberPage extends AppCompatActivity {
                 mRef.child("gymClass").child(parent.getItemAtPosition(position).toString()).child(selectedClassID[0]).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        classNameText.setText(snapshot.child("className").getValue().toString());
+                        if (snapshot.exists()){
+                            classNameText.setText(snapshot.child("className").getValue().toString());
 
-                        String startTime = snapshot.child("startTime").getValue().toString();
-                        String endTime = snapshot.child("endTime").getValue().toString();
-                        classDayText.setText(snapshot.child("day").getValue().toString());
-                        classTimeText.setText(startTime+" - "+endTime);
-                        classMaxCapText.setText(snapshot.child("maximumCapacity").getValue().toString());
-                        difficultyText.setText(snapshot.child("difficulty").getValue().toString());
-                        String instructorName = snapshot.child("instructor").child("name").getValue().toString();
-                        classInstructorText.setText(instructorName);
+                            String startTime = snapshot.child("startTime").getValue().toString();
+                            String endTime = snapshot.child("endTime").getValue().toString();
+                            classDayText.setText(snapshot.child("day").getValue().toString());
+                            classTimeText.setText(startTime + " - " + endTime);
+                            classMaxCapText.setText(snapshot.child("maximumCapacity").getValue().toString());
+                            difficultyText.setText(snapshot.child("difficulty").getValue().toString());
+                            String instructorName = snapshot.child("instructor").child("name").getValue().toString();
+                            classInstructorText.setText(instructorName);
 
-                        crossFade(enrolledClassInfoLayout, View.VISIBLE);
-                        enrolledClassInfoLayout.setAlpha(0.3F);
+                            crossFade(enrolledClassInfoLayout, View.VISIBLE);
+                            enrolledClassInfoLayout.setAlpha(0.3F);
+                        }
                     }
 
                     @Override
@@ -268,26 +270,7 @@ public class GymMemberPage extends AppCompatActivity {
                         classesRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if (clicked[0]) {
-                                    snapshot.child(selectedClassID[0]).getRef().removeValue();
-                                    mRef.child("gymClass").child(classNameText.getText().toString()).child(selectedClassID[0]).addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            if (clicked[0]) {
-                                                long currentUsers = Integer.parseInt(snapshot.child("numberOfUsers").getValue().toString());
-                                                snapshot.child("numberOfUsers").getRef().setValue(currentUsers - 1);
-                                                clicked[0] = false;
-                                                finish();
-                                                startActivity(getIntent());
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-
-                                        }
-                                    });
-                                }
+                                completeUnenrollAction(clicked, snapshot, selectedClassID);
                             }
 
                             @Override
@@ -327,6 +310,50 @@ public class GymMemberPage extends AppCompatActivity {
                 .alpha(1f)
                 .setDuration(shortAnimationDuration)
                 .setListener(null);
+    }
+
+    public void completeUnenrollAction(boolean[] clicked, DataSnapshot snapshot, String[] selectedClassID){
+        if (clicked[0]) {
+            snapshot.child(selectedClassID[0]).getRef().removeValue();
+            mRef.child("gymClass").child(classNameText.getText().toString()).child(selectedClassID[0]).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (clicked[0]) {
+                        long currentUsers = Integer.parseInt(snapshot.child("numberOfUsers").getValue().toString());
+                        snapshot.child("numberOfUsers").getRef().setValue(currentUsers - 1);
+                        String instructorID = snapshot.child("instructor").child("userID").getValue().toString();
+                        DatabaseReference tempRef = FirebaseDatabase.getInstance().getReference().child("users").child(instructorID).getRef();
+                        tempRef.child("gymClasses").child(selectedClassID[0]).child("numberOfUsers").setValue(currentUsers-1);
+                        tempRef.child("gymClasses").child(selectedClassID[0]).child("members").child(mUser.getUid()).getRef().removeValue();
+
+                        DatabaseReference tempRef2 = FirebaseDatabase.getInstance().getReference().child("gymClass").child(classNameText.getText().
+                                toString()).child(selectedClassID[0]).getRef();
+                        tempRef2.child("members").child(mUser.getUid()).getRef().removeValue();
+
+                        clicked[0] = false;
+                        finish();
+                        startActivity(getIntent());
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+
+            });
+        }
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK ) {
+            if (enrolledClassInfoLayout.getVisibility()==View.VISIBLE){
+                crossFade(enrolledClassInfoLayout, View.GONE);
+                showProfile.setClickable(true);
+                showMenu.setClickable(true);
+                return false;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

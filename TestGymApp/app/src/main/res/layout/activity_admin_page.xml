@@ -30,7 +30,8 @@
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                android:fontFamily="@font/roboto_regular"/>
 
             <Button
                 android:id="@+id/createClassButton"
@@ -41,6 +42,7 @@
                 android:layout_marginEnd="70dp"
                 android:text="Create a new class"
                 android:textSize="18sp"
+                android:fontFamily="@font/roboto_regular"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"
@@ -58,7 +60,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/topLefticon"
+                android:id="@+id/topLeftIcon"
                 android:src="@drawable/nav_bar_left_icon"
                 android:layout_width="38dp"
                 android:layout_height="28dp"
@@ -67,9 +69,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/toolbar"
                 tools:srcCompat="@tools:sample/avatars" />
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/sideNav"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:layout_constraintVertical_bias="0.0"
+                android:visibility="gone"
+                android:background="@drawable/round">
+
+                <ListView
+                    android:id="@+id/navMenuOptions"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.navigation.NavigationView>
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/profileOptionsMenu"
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                android:visibility="gone"
+                android:background="@drawable/round">
+
+                <ListView
+                    android:id="@+id/profileOptionsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.navigation.NavigationView>
 
             <ImageView
-                android:id="@+id/topRIghticon"
+                android:id="@+id/topRightIcon"
                 android:src="@drawable/admin_icon"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
@@ -77,50 +114,11 @@
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/topLefticon"
+                app:layout_constraintStart_toEndOf="@+id/topLeftIcon"
                 app:layout_constraintTop_toTopOf="@+id/toolbar"
                 tools:srcCompat="@tools:sample/avatars" />
 
-            <com.google.android.material.navigation.NavigationView
-                android:layout_width="197dp"
-                android:layout_height="360dp"
-                android:id="@+id/drawer"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                app:layout_constraintVertical_bias="0.0" >
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/showGymClasses"
-                        android:layout_width="126dp"
-                        android:layout_height="26dp"
-                        android:text="Gym Classes"
-                        app:layout_constraintBottom_toTopOf="@+id/showUsers"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.492"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.355" />
-
-                    <TextView
-                        android:id="@+id/showUsers"
-                        android:layout_width="129dp"
-                        android:layout_height="32dp"
-                        android:layout_marginBottom="200dp"
-                        android:text="Show users"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.507"
-                        app:layout_constraintStart_toStartOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.navigation.NavigationView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

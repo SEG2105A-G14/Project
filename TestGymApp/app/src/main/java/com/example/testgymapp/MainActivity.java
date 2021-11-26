@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         String uid = myUser.getUid();
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
@@ -146,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
 
                     role = user.getRole();
                     tempName = user.getName();
-                    Log.d("role", role);
                     if (role.equals("Member")){
                         launchMemberPage(tempName, role);
                     }

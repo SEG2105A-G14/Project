@@ -193,7 +193,7 @@ public class AdminPage extends AppCompatActivity {
                     GymClassType aGymClass= new GymClassType(name, description);
                     if (name.length()!=0 && description.length()!=0) {
                         addGymClass(aGymClass);
-                        myRef.child("gymClasses").child(name).getRef().setValue(aGymClass);
+                        myRef.child("gymClassType").child(name).getRef().setValue(aGymClass);
                         createClassOverlay.setVisibility(View.GONE);
                         className.setText("");
                         classDescription.setText("");

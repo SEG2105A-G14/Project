@@ -316,8 +316,39 @@ public class InstructorPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatabaseReference gRef = FirebaseDatabase.getInstance().getReference().child("gymClass");
-                gRef.child(nameValue[0]).child(dbName[0]).removeValue();
-                mRef.child(id).child("gymClasses").child(dbName[0]).removeValue();
+                DatabaseReference gRef2 = FirebaseDatabase.getInstance().getReference().child("gymClass").
+                        child(nameValue[0]).child(dbName[0]);
+
+                ArrayList<String> ids = new ArrayList<>();
+                gRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot ds : snapshot.child("members").getChildren()){
+                            Log.d("user", ds.toString());
+                            ids.add(ds.getKey());
+                        }
+
+                        DatabaseReference usersRef= FirebaseDatabase.getInstance().getReference().
+                                child("users");
+
+                        for (String s : ids){
+                            usersRef = usersRef.child(s).child("gymClasses").child(dbName[0]);
+                            Log.d("classs", usersRef.toString());
+                            usersRef.removeValue();
+                        }
+                        gRef.child(nameValue[0]).child(dbName[0]).removeValue();
+                        mRef.child(id).child("gymClasses").child(dbName[0]).removeValue();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
                 classList.setVisibility(View.VISIBLE);
                 instructorClass.setVisibility(View.GONE);
             }

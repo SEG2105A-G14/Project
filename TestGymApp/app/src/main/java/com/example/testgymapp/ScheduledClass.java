@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -74,15 +75,17 @@ public class ScheduledClass extends AppCompatActivity {
 
         String classType = getIntent().getStringExtra("classType");
         String role = getIntent().getStringExtra("role");
+        String userName = getIntent().getStringExtra("name");
 
         DatabaseReference classRef = mRef.child("gymClass").child(classType).getRef();
         final ArrayList<String>[] classID = new ArrayList[]{new ArrayList<>()};
         final String[] selectedClassID = new String[1];
         final String[] classInstructor = new String[1];
         final boolean[] hasBeenIncremented = {false};
+        final String[] instructorID = new String[1];
         here[0] = true;
 
-        classRef.addValueEventListener(new ValueEventListener() {
+        classRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d("classes", snapshot.toString());
@@ -106,6 +109,7 @@ public class ScheduledClass extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             className.setText(snapshot.child("className").getValue().toString());
 
+                            instructorID[0] = snapshot.child("instructor").child("userID").getValue().toString();
                             classInstructor[0] = snapshot.child("instructor").child("name").getValue().toString();
                             String startTime = snapshot.child("startTime").getValue().toString();
                             String endTime = snapshot.child("endTime").getValue().toString();
@@ -155,18 +159,6 @@ public class ScheduledClass extends AppCompatActivity {
                                     Toast.makeText(ScheduledClass.this, "The maximum capacity of users has been reached. Sorry!", Toast.LENGTH_LONG).show();
                                     return;
                                 }
-//                                if (startPeriod.equals("AM")){
-//                                    start = Integer.parseInt(times[0].trim().split(" ")[0])%12;
-//                                }
-//                                else {
-//                                    start = (Integer.parseInt(times[0].trim().split(" ")[0])%12)+12;
-//                                }
-//                                if (endPeriod.equals("AM")){
-//                                    end = Integer.parseInt(times[1].trim().split(" ")[0])%12;
-//                                }
-//                                else {
-//                                    end = (Integer.parseInt(times[1].trim().split(" ")[0])%12)+12;
-//                                }
 
                                 mRef.child("users").child(uid).child("gymClasses").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
@@ -187,16 +179,22 @@ public class ScheduledClass extends AppCompatActivity {
                                         }
                                         if (canEnroll[0]&&!hasBeenIncremented[0]&&here[0]){
                                             DatabaseReference myRef = mRef.child("users").child(uid).child("gymClasses").child(selectedClassID[0]).getRef();
-                                            Log.d("clicked", numberOfUsers.getText().toString());
                                             myRef.child("classType").getRef().setValue(className.getText().toString());
                                             myRef.child("day").getRef().setValue(day.getText().toString());
                                             myRef.child("startTime").getRef().setValue(startPeriod);
                                             myRef.child("endTime").getRef().setValue(endPeriod);
-//                                            myRef.child("duration").getRef().setValue(end-start);
                                             myRef.child("maximumCapacity").getRef().setValue(Integer.parseInt(maxCap.getText().toString()));
                                             myRef.child("instructor").child("name").setValue(instructorNameView.getText().toString());
+
                                             long users = Integer.parseInt(snapshot1.child(selectedClassID[0]).child("numberOfUsers").getValue().toString())+1;
+
+                                            DatabaseReference tempRef = FirebaseDatabase.getInstance().getReference().child("users").child(instructorID[0]).getRef();
+                                            tempRef.child("gymClasses").child(selectedClassID[0]).child("numberOfUsers").setValue(users);
+                                            tempRef.child("gymClasses").child(selectedClassID[0]).child("members").child(mUser.getUid()).setValue(userName);
+
                                             snapshot1.child(selectedClassID[0]).child("numberOfUsers").getRef().setValue(users);
+                                            snapshot1.child(selectedClassID[0]).child("members").child(mUser.getUid()).getRef().setValue(userName);
+
                                             canEnroll[0] = false;
                                             hasBeenIncremented[0]=true;
                                             clicked[0] =false;
@@ -204,7 +202,9 @@ public class ScheduledClass extends AppCompatActivity {
                                             availableClassesLayout.setAlpha(1);
                                             Intent backIntent = new Intent(getApplicationContext(), GymMemberPage.class);
                                             backIntent.putExtra("role", "Member");
+                                            backIntent.putExtra("name", userName);
                                             startActivity(backIntent);
+                                            finish();
                                         }
                                         else if (!canEnroll[0]&&!hasBeenIncremented[0]&&here[0]){
                                             Toast.makeText(ScheduledClass.this, "Time Conflict. Cannot Enroll", Toast.LENGTH_LONG).show();
@@ -246,11 +246,11 @@ public class ScheduledClass extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 classID[0] = new ArrayList<>();
+                s = s.toString().toLowerCase();
 
                 classRef.orderByChild("day").startAt(s.toString()).endAt(s.toString()+"\uf8ff").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Log.d("Test-search", snapshot.toString());
                         if (snapshot.exists()){
                             classID[0] = setClickedItem(classType, snapshot);
                         }
@@ -305,7 +305,7 @@ public class ScheduledClass extends AppCompatActivity {
 
             instructorNames.add(instructorName);
 
-            String period = day.substring(0, 3)+". "+startTime+" - "+endTime;
+            String period = day.substring(0, 1).toUpperCase() + day.substring(1, 3)+". "+startTime+" - "+endTime;
             datesAndTimes.add(period);
         }
         CustomClassList customClassList = new CustomClassList(ScheduledClass.this, classNames, datesAndTimes, instructorNames);
@@ -329,13 +329,22 @@ public class ScheduledClass extends AppCompatActivity {
     }
     public int timeConv(String time){
         String[] times = time.split(" ");
-        Log.d("TESTTTT", times[1]);
         int hours = Integer.parseInt(times[0].replace(":",""));
-        Log.d("TESTTTT222", times[1]);
         if(times[1].equals("am") || times[0].startsWith("12")){
             return hours;
         }else{
             return hours+1200;
         }
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK ) {
+            if (classInfoLayout.getVisibility()==View.VISIBLE){
+                crossFade(classInfoLayout, View.GONE);
+                availableClassesLayout.setAlpha(1.0F);
+                return false;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

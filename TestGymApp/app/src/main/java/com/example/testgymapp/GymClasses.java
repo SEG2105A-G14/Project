@@ -150,6 +150,7 @@ public class GymClasses extends AppCompatActivity {
                         Intent intent = new Intent(GymClasses.this, ScheduledClassesInstructor.class);
                         intent.putExtra("classType", tempValue[0]);
                         intent.putExtra("role", role);
+                        intent.putExtra("name", userName);
                         startActivity(intent);
                     }
                 });
@@ -180,6 +181,7 @@ public class GymClasses extends AppCompatActivity {
                                 Intent intent = new Intent(GymClasses.this, ScheduledClass.class);
                                 intent.putExtra("classType", tempValue[0]);
                                 intent.putExtra("role", role);
+                                intent.putExtra("name", userName);
                                 startActivity(intent);
                             }
 
@@ -206,7 +208,7 @@ public class GymClasses extends AppCompatActivity {
                          else {
                              String start = startTime.getSelectedItem().toString();
                              String end = endTime.getSelectedItem().toString();
-                             String days = day.getSelectedItem().toString();
+                             String days = day.getSelectedItem().toString().toLowerCase();
                              String diff = difficulty.getSelectedItem().toString();
 
                              int s1 = timeConv(start);
@@ -219,7 +221,7 @@ public class GymClasses extends AppCompatActivity {
 
                              String name = snapshot.child("users").child(id).child("name").getValue().toString();
                              String email = snapshot.child("users").child(id).child("email").getValue().toString();
-                             Instructor tmp = new Instructor(name, email);
+                             Instructor tmp = new Instructor(name, email, id);
 
                              if (snapshot.hasChild("gymClass")) {
                                  myRef2.child("gymClass").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -332,6 +334,8 @@ public class GymClasses extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         myRef.child(actualName[0]).removeValue();
+                        DatabaseReference tempRef = FirebaseDatabase.getInstance().getReference().child("gymClass");
+                        tempRef.child(actualName[0]).removeValue();
                         className.setText("");
                         classDescription.setText("");
                         editClassWin.setVisibility(View.GONE);
@@ -370,16 +374,15 @@ public class GymClasses extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 ArrayList<String> searchedClass=new ArrayList<>();
                 ArrayList<String> descriptions=new ArrayList<>();
-                CustomClasssListV2 adapter = new CustomClasssListV2(GymClasses.this, searchedClass, descriptions);
-                myGymClasses.setAdapter(adapter);
-
-                myRef.orderByKey().startAt(s.toString()).endAt(s.toString()+"\uf8ff").addChildEventListener(new ChildEventListener() {
+                myRef.orderByKey().startAt(s.toString().toLowerCase()).endAt(s.toString().toLowerCase()+"\uf8ff").addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
                         String temp = snapshot.getKey().substring(0,1).toUpperCase()+snapshot.getKey().substring(1);
                         searchedClass.add(temp);
                         descriptions.add(snapshot.child("description").getValue().toString());
-                        Log.d("Searchedd", temp);
+                        CustomClassListV2 adapter = new CustomClassListV2(GymClasses.this, searchedClass, descriptions);
+                        myGymClasses.setAdapter(adapter);
                     }
 
                     @Override
@@ -424,7 +427,7 @@ public class GymClasses extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 final ArrayList<String> nameList = new ArrayList<>();
                 final ArrayList<String> desList = new ArrayList<>();
-                final CustomClasssListV2 adapter = new CustomClasssListV2(GymClasses.this, nameList, desList);
+                final CustomClassListV2 adapter = new CustomClassListV2(GymClasses.this, nameList, desList);
                 myGymClasses.setAdapter(adapter);
 
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){

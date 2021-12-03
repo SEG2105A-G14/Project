@@ -125,6 +125,7 @@ public class InstructorPage extends AppCompatActivity {
 //        className = new ArrayList<>();
         final String[] dbName = new String[1];
         final String[] nameValue = new String[1];
+        final String[] clashingInstructor = new String[1];
 
         welcomeText.setText(message);
 
@@ -324,7 +325,7 @@ public class InstructorPage extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot ds : snapshot.child("members").getChildren()){
-                            Log.d("user", ds.toString());
+//                            Log.d("user", ds.toString());
                             ids.add(ds.getKey());
                         }
 
@@ -333,7 +334,7 @@ public class InstructorPage extends AppCompatActivity {
 
                         for (String s : ids){
                             usersRef = usersRef.child(s).child("gymClasses").child(dbName[0]);
-                            Log.d("classs", usersRef.toString());
+//                            Log.d("classs", usersRef.toString());
                             usersRef.removeValue();
                         }
                         gRef.child(nameValue[0]).child(dbName[0]).removeValue();
@@ -371,7 +372,7 @@ public class InstructorPage extends AppCompatActivity {
                             String d = snapshot.child("gymClassType").child(nameValue[0]).child("description").getValue().toString();
                             String start = startTime.getSelectedItem().toString();
                             String end = endTime.getSelectedItem().toString();
-                            String days = day.getSelectedItem().toString();
+                            String days = day.getSelectedItem().toString().toLowerCase();
                             String diff = difficulty.getSelectedItem().toString();
 
                             int s1 = timeConv(start);
@@ -390,16 +391,17 @@ public class InstructorPage extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     final boolean[] noTimeConf = {true};
                                     final boolean[] noNameConf = {true};
-                                    int s = timeConv(start);
-                                    int e = timeConv(end);
+//                                    int s = timeConv(start);
+//                                    int e = timeConv(end);
                                     for (DataSnapshot classID : snapshot.getChildren()) {
                                         for (DataSnapshot classes : classID.getChildren()) {
-                                            int s2 = timeConv(classes.child("startTime").getValue().toString());
-                                            int e2 = timeConv(classes.child("endTime").getValue().toString());
-                                            if (days.equals(classes.child("day").getValue().toString())) {
+//                                            int s2 = timeConv(classes.child("startTime").getValue().toString());
+//                                            int e2 = timeConv(classes.child("endTime").getValue().toString());
+                                            if (days.equals(classes.child("day").getValue().toString().toLowerCase())) {
                                                 if (nameValue[0].equals(classes.child("className").getValue().toString()) &&
                                                         !userName.equals(classes.child("instructor").child("name").getValue().toString())) {
                                                     noNameConf[0] = false;
+                                                    clashingInstructor[0] = classes.child("instructor").child("name").getValue().toString();
                                                     break;
                                                 }
                                             }
@@ -461,13 +463,11 @@ public class InstructorPage extends AppCompatActivity {
                                             }
                                         });
 
-
-
-
                                     }
 
                                     else if (!noNameConf[0]) {
-                                        Toast.makeText(getApplicationContext(), "The day you have chosen conflict with another class of the same type, please enter another day", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "The day you have chosen conflicts with another class of the same type" +
+                                                " scheduled by instructor "+clashingInstructor[0]+", please select another day", Toast.LENGTH_LONG).show();
                                         clicked[0] = false;
                                     }
 
